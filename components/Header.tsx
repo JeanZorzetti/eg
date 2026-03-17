@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 const especialidades = [
   { label: 'Todas', href: '/especialidades' },
@@ -15,10 +15,14 @@ const especialidades = [
   { label: 'Nutrição', href: '/especialidades#nutricao' },
 ]
 
-const navLinks = [
-  { label: 'Home', href: '/' },
+// Links visíveis diretamente na nav
+const mainLinks = [
   { label: 'Para Pacientes', href: '/para-pacientes' },
   { label: 'Empresas', href: '/empresas' },
+]
+
+// Links agrupados no dropdown "Mais"
+const moreLinks = [
   { label: 'Como Funciona', href: '/como-funciona' },
   { label: 'Planos', href: '/planos' },
   { label: 'Sobre', href: '/sobre-nos' },
@@ -26,67 +30,112 @@ const navLinks = [
   { label: 'Contato', href: '/contato' },
 ]
 
+const Chevron = ({ className }: { className?: string }) => (
+  <svg className={className ?? 'h-3 w-3'} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+  </svg>
+)
+
 export default function Header() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [specOpen, setSpecOpen] = useState(false)
+  const [specOpen, setSpecOpen] = useState(false)   // mobile only
+  const [moreOpen, setMoreOpen] = useState(false)   // mobile only
+
+  const moreRef = useRef<HTMLDivElement>(null)
+
+  // Fecha dropdown "Mais" ao clicar fora
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
 
+  const linkCls = (href: string) =>
+    `rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#029641] ${
+      isActive(href) ? 'text-[#029641]' : 'text-gray-500'
+    }`
+
+  const moreActive = moreLinks.some((l) => isActive(l.href))
+
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between gap-6">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
-          <Image src="/logo.jpeg" alt="EG Telemedicina" width={40} height={40} className="rounded-full h-10 w-10 object-cover" priority />
+          <Image
+            src="/logo.jpeg"
+            alt="EG Telemedicina"
+            width={40}
+            height={40}
+            className="rounded-full h-10 w-10 object-cover"
+            priority
+          />
           <span className="font-bold text-[#062e24] text-base hidden sm:block">EG Telemedicina</span>
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-1 lg:flex">
-          <Link
-            href="/"
-            className={`rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#029641] ${isActive('/') ? 'text-[#029641]' : 'text-gray-500'}`}
-          >
-            Home
-          </Link>
+        <div className="hidden lg:flex items-center gap-1 flex-1">
 
-          {/* Especialidades dropdown — hover */}
+          {/* Home */}
+          <Link href="/" className={linkCls('/')}>Home</Link>
+
+          {/* Especialidades — hover dropdown */}
           <div className="relative group">
             <button className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#029641] ${isActive('/especialidades') ? 'text-[#029641]' : 'text-gray-500'}`}>
-              Especialidades
-              <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
+              Especialidades <Chevron />
             </button>
             <div className="absolute left-0 top-full hidden min-w-[180px] rounded-lg border border-gray-200 bg-white p-2 shadow-lg group-hover:block z-50">
               {especialidades.map((e) => (
-                <Link
-                  key={e.href}
-                  href={e.href}
-                  className="block rounded-md px-3 py-2 text-sm text-gray-500 transition-colors hover:bg-[#f0fdf4] hover:text-[#029641]"
-                >
+                <Link key={e.href} href={e.href} className="block rounded-md px-3 py-2 text-sm text-gray-500 transition-colors hover:bg-[#f0fdf4] hover:text-[#029641]">
                   {e.label}
                 </Link>
               ))}
             </div>
           </div>
 
-          {navLinks.slice(1).map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={`rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#029641] ${isActive(l.href) ? 'text-[#029641]' : 'text-gray-500'}`}
-            >
-              {l.label}
-            </Link>
+          {/* Links principais */}
+          {mainLinks.map((l) => (
+            <Link key={l.href} href={l.href} className={linkCls(l.href)}>{l.label}</Link>
           ))}
+
+          {/* Mais ▾ — click dropdown */}
+          <div className="relative" ref={moreRef}>
+            <button
+              onClick={() => setMoreOpen((o) => !o)}
+              className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#029641] ${moreActive || moreOpen ? 'text-[#029641]' : 'text-gray-500'}`}
+            >
+              Mais
+              <Chevron className={`h-3 w-3 transition-transform duration-200 ${moreOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {moreOpen && (
+              <div className="absolute left-0 top-full mt-1 min-w-[180px] rounded-lg border border-gray-200 bg-white p-2 shadow-lg z-50">
+                {moreLinks.map((l) => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setMoreOpen(false)}
+                    className={`block rounded-md px-3 py-2 text-sm transition-colors hover:bg-[#f0fdf4] hover:text-[#029641] ${isActive(l.href) ? 'text-[#029641] font-medium' : 'text-gray-500'}`}
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Desktop CTAs */}
-        <div className="hidden items-center gap-3 lg:flex shrink-0">
+        <div className="hidden lg:flex items-center gap-3 shrink-0">
           <Link
             href="/para-pacientes"
             className="rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:border-[#029641] hover:text-[#029641]"
@@ -102,7 +151,11 @@ export default function Header() {
         </div>
 
         {/* Mobile toggle */}
-        <button className="lg:hidden p-1 text-gray-600 hover:text-[#029641]" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
+        <button
+          className="lg:hidden p-1 text-gray-600 hover:text-[#029641] transition-colors"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Menu"
+        >
           {mobileOpen ? (
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -121,14 +174,13 @@ export default function Header() {
           <div className="flex flex-col gap-1">
             <Link href="/" onClick={() => setMobileOpen(false)} className="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-50">Home</Link>
 
+            {/* Especialidades accordion */}
             <button
               onClick={() => setSpecOpen(!specOpen)}
               className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-50"
             >
               Especialidades
-              <svg className={`h-4 w-4 transition-transform ${specOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
+              <Chevron className={`h-4 w-4 transition-transform ${specOpen ? 'rotate-180' : ''}`} />
             </button>
             {specOpen && especialidades.map((e) => (
               <Link key={e.href} href={e.href} onClick={() => setMobileOpen(false)} className="rounded-md px-3 py-2 pl-6 text-sm text-gray-500 hover:bg-gray-50">
@@ -136,8 +188,22 @@ export default function Header() {
               </Link>
             ))}
 
-            {navLinks.slice(1).map((l) => (
+            {mainLinks.map((l) => (
               <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-50">
+                {l.label}
+              </Link>
+            ))}
+
+            {/* Mais accordion */}
+            <button
+              onClick={() => setMoreOpen(!moreOpen)}
+              className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-50"
+            >
+              Mais
+              <Chevron className={`h-4 w-4 transition-transform ${moreOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {moreOpen && moreLinks.map((l) => (
+              <Link key={l.href} href={l.href} onClick={() => { setMobileOpen(false); setMoreOpen(false) }} className="rounded-md px-3 py-2 pl-6 text-sm text-gray-500 hover:bg-gray-50">
                 {l.label}
               </Link>
             ))}
