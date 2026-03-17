@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Blog | EG Telemedicina',
@@ -13,6 +14,7 @@ type Article = {
   author: string
   date: string
   readTime: string
+  image: string
 }
 
 const articles: Article[] = [
@@ -23,6 +25,7 @@ const articles: Article[] = [
     author: 'Dr. João Silva',
     date: '10 mar 2026',
     readTime: '5 min',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=450&fit=crop&auto=format&q=80',
   },
   {
     title: 'Saúde mental: quando buscar ajuda profissional',
@@ -31,6 +34,7 @@ const articles: Article[] = [
     author: 'Dra. Ana Costa',
     date: '07 mar 2026',
     readTime: '7 min',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=450&fit=crop&auto=format&q=80',
   },
   {
     title: 'Pediatria online: dúvidas mais comuns dos pais',
@@ -39,6 +43,7 @@ const articles: Article[] = [
     author: 'Dra. Maria Santos',
     date: '03 mar 2026',
     readTime: '4 min',
+    image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=450&fit=crop&auto=format&q=80',
   },
   {
     title: 'Dermatologia digital: o que pode ser diagnosticado por vídeo',
@@ -47,6 +52,7 @@ const articles: Article[] = [
     author: 'Dr. Lucas Oliveira',
     date: '28 fev 2026',
     readTime: '6 min',
+    image: 'https://images.unsplash.com/photo-1612532275214-e4ca76d0e4d1?w=800&h=450&fit=crop&auto=format&q=80',
   },
   {
     title: 'Nutrição: mitos e verdades sobre emagrecimento',
@@ -55,6 +61,7 @@ const articles: Article[] = [
     author: 'Nutricionista Paula',
     date: '24 fev 2026',
     readTime: '8 min',
+    image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=450&fit=crop&auto=format&q=80',
   },
   {
     title: 'Telemedicina e LGPD: como seus dados são protegidos',
@@ -63,6 +70,7 @@ const articles: Article[] = [
     author: 'Equipe EG',
     date: '20 fev 2026',
     readTime: '5 min',
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=450&fit=crop&auto=format&q=80',
   },
 ]
 
@@ -94,30 +102,34 @@ export default function BlogPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {articles.map((article) => (
+            {articles.map((article, idx) => (
               <article
                 key={article.title}
-                className="border border-gray-200 rounded-xl overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+                className="border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 group"
               >
-                {/* Imagem placeholder */}
-                <div className="bg-[#EEEDFE] h-48 flex items-center justify-center">
-                  <svg className="w-14 h-14 text-[#7F77DD]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                  </svg>
-                </div>
-
-                <div className="p-5">
-                  {/* Categoria */}
+                {/* Imagem */}
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={article.image}
+                    alt={article.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    priority={idx === 0}
+                  />
+                  {/* Badge categoria sobre a imagem */}
                   <span
-                    className={`inline-block text-xs font-semibold px-2.5 py-1 rounded-full mb-3 ${
+                    className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full ${
                       categoryColors[article.category] ?? 'bg-gray-100 text-gray-600'
                     }`}
                   >
                     {article.category}
                   </span>
+                </div>
 
+                <div className="p-5">
                   {/* Título */}
-                  <h2 className="text-base font-bold text-[#26215C] mb-2 line-clamp-2 leading-snug">
+                  <h2 className="text-base font-bold text-[#26215C] mb-2 line-clamp-2 leading-snug group-hover:text-[#7F77DD] transition-colors">
                     {article.title}
                   </h2>
 
