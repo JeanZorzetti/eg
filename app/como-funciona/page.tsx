@@ -90,7 +90,7 @@ export default function ComoFuncionaPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#062e24] text-white text-center">
+      <section className="bg-[#26215C] text-white text-center">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">Como funciona</h1>
           <p className="text-lg text-green-100 leading-relaxed">
@@ -109,7 +109,7 @@ export default function ComoFuncionaPage() {
             <div className="space-y-8">
               {steps.map((step) => (
                 <div key={step.number} className="relative pl-14">
-                  <div className="absolute left-0 w-10 h-10 bg-[#029641] text-white rounded-full flex items-center justify-center font-extrabold text-sm shadow-lg shadow-[#029641]/25">
+                  <div className="absolute left-0 w-10 h-10 bg-[#7F77DD] text-white rounded-full flex items-center justify-center font-extrabold text-sm shadow-lg shadow-[#7F77DD]/25">
                     {step.number}
                   </div>
                   <StepCard step={step} />
@@ -127,7 +127,7 @@ export default function ComoFuncionaPage() {
                 return (
                   <div key={step.number} className="relative grid grid-cols-2 gap-8 items-center">
                     {/* Número no centro */}
-                    <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 bg-[#029641] text-white rounded-full flex items-center justify-center font-extrabold text-lg z-10 shadow-lg shadow-[#029641]/25">
+                    <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 bg-[#7F77DD] text-white rounded-full flex items-center justify-center font-extrabold text-lg z-10 shadow-lg shadow-[#7F77DD]/25">
                       {step.number}
                     </div>
 
@@ -156,11 +156,11 @@ export default function ComoFuncionaPage() {
 
       {/* Faixa de credibilidade */}
       <section className="py-6 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto bg-[#029641] rounded-2xl py-8 px-6">
+        <div className="max-w-5xl mx-auto bg-[#7F77DD] rounded-2xl py-8 px-6">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 text-white text-center">
             {credibilityItems.map((item) => (
               <div key={item} className="flex flex-col items-center gap-1">
-                <svg className="w-5 h-5 text-green-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-purple-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                 </svg>
                 <span className="text-sm font-medium leading-tight">{item}</span>
@@ -173,7 +173,7 @@ export default function ComoFuncionaPage() {
       {/* CTA Final */}
       <section className="py-20 text-center px-4">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-[#062e24] mb-4">
+          <h2 className="text-3xl font-extrabold text-[#26215C] mb-4">
             Cuidar da sua saúde nunca foi tão fácil.
           </h2>
           <p className="text-gray-500 mb-8">
@@ -182,13 +182,13 @@ export default function ComoFuncionaPage() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/contato"
-              className="bg-[#029641] hover:bg-[#016d2f] text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200"
+              className="bg-[#7F77DD] hover:bg-[#26215C] text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200"
             >
               Quero atendimento agora
             </Link>
             <Link
               href="/planos"
-              className="border-2 border-[#029641] text-[#029641] hover:bg-[#f0fdf4] font-semibold px-7 py-3 rounded-xl transition-all duration-200"
+              className="border-2 border-[#7F77DD] text-[#7F77DD] hover:bg-[#EEEDFE] font-semibold px-7 py-3 rounded-xl transition-all duration-200"
             >
               Conhecer os planos
             </Link>
@@ -204,14 +204,14 @@ function StepCard({ step, align }: { step: Step; align?: 'left' | 'right' }) {
   return (
     <div className="border border-gray-200 rounded-xl p-5 hover:shadow-lg transition-shadow duration-200">
       <div className={`flex items-center gap-2 mb-2 ${isRight ? 'justify-end' : ''}`}>
-        <span className="text-xs font-bold text-[#029641] uppercase tracking-wide">{step.label}</span>
+        <span className="text-xs font-bold text-[#7F77DD] uppercase tracking-wide">{step.label}</span>
         {step.badge && (
-          <span className="bg-[#029641] text-white text-xs font-semibold px-2.5 py-0.5 rounded-full">
+          <span className="bg-[#7F77DD] text-white text-xs font-semibold px-2.5 py-0.5 rounded-full">
             {step.badge}
           </span>
         )}
       </div>
-      <h3 className={`text-lg font-bold text-[#062e24] mb-2 ${isRight ? 'text-right' : ''}`}>{step.title}</h3>
+      <h3 className={`text-lg font-bold text-[#26215C] mb-2 ${isRight ? 'text-right' : ''}`}>{step.title}</h3>
       <p className={`text-sm text-gray-500 leading-relaxed mb-4 ${isRight ? 'text-right' : ''}`}>{step.description}</p>
 
       {step.extras?.type === 'list' && (
@@ -219,7 +219,7 @@ function StepCard({ step, align }: { step: Step; align?: 'left' | 'right' }) {
           {step.extras.items.map((item) => (
             <span
               key={item}
-              className="bg-[#f0fdf4] text-[#029641] text-xs font-medium px-2.5 py-1 rounded-full"
+              className="bg-[#EEEDFE] text-[#7F77DD] text-xs font-medium px-2.5 py-1 rounded-full"
             >
               {item}
             </span>
@@ -230,7 +230,7 @@ function StepCard({ step, align }: { step: Step; align?: 'left' | 'right' }) {
       <div className={`border-t border-gray-100 pt-3 flex flex-wrap gap-3 ${isRight ? 'justify-end' : ''}`}>
         {step.highlights.map((h) => (
           <span key={h} className="flex items-center gap-1 text-xs text-gray-500">
-            <svg className="w-3.5 h-3.5 text-[#029641] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3.5 h-3.5 text-[#7F77DD] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
             </svg>
             {h}

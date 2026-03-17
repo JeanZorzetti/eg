@@ -56,8 +56,8 @@ export default function Header() {
     href === '/' ? pathname === '/' : pathname.startsWith(href)
 
   const linkCls = (href: string) =>
-    `rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#029641] ${
-      isActive(href) ? 'text-[#029641]' : 'text-gray-500'
+    `rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#7F77DD] ${
+      isActive(href) ? 'text-[#7F77DD]' : 'text-gray-500'
     }`
 
   const moreActive = moreLinks.some((l) => isActive(l.href))
@@ -76,7 +76,7 @@ export default function Header() {
             className="rounded-full h-10 w-10 object-cover"
             priority
           />
-          <span className="font-bold text-[#062e24] text-base hidden sm:block">EG Telemedicina</span>
+          <span className="font-bold text-[#26215C] text-base hidden sm:block">EG Telemedicina</span>
         </Link>
 
         {/* Desktop nav */}
@@ -87,12 +87,12 @@ export default function Header() {
 
           {/* Especialidades — hover dropdown */}
           <div className="relative group">
-            <button className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#029641] ${isActive('/especialidades') ? 'text-[#029641]' : 'text-gray-500'}`}>
+            <button className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#7F77DD] ${isActive('/especialidades') ? 'text-[#7F77DD]' : 'text-gray-500'}`}>
               Especialidades <Chevron />
             </button>
             <div className="absolute left-0 top-full hidden min-w-[180px] rounded-lg border border-gray-200 bg-white p-2 shadow-lg group-hover:block z-50">
               {especialidades.map((e) => (
-                <Link key={e.href} href={e.href} className="block rounded-md px-3 py-2 text-sm text-gray-500 transition-colors hover:bg-[#f0fdf4] hover:text-[#029641]">
+                <Link key={e.href} href={e.href} className="block rounded-md px-3 py-2 text-sm text-gray-500 transition-colors hover:bg-[#EEEDFE] hover:text-[#7F77DD]">
                   {e.label}
                 </Link>
               ))}
@@ -108,7 +108,7 @@ export default function Header() {
           <div className="relative" ref={moreRef}>
             <button
               onClick={() => setMoreOpen((o) => !o)}
-              className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#029641] ${moreActive || moreOpen ? 'text-[#029641]' : 'text-gray-500'}`}
+              className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#7F77DD] ${moreActive || moreOpen ? 'text-[#7F77DD]' : 'text-gray-500'}`}
             >
               Mais
               <Chevron className={`h-3 w-3 transition-transform duration-200 ${moreOpen ? 'rotate-180' : ''}`} />
@@ -121,7 +121,7 @@ export default function Header() {
                     key={l.href}
                     href={l.href}
                     onClick={() => setMoreOpen(false)}
-                    className={`block rounded-md px-3 py-2 text-sm transition-colors hover:bg-[#f0fdf4] hover:text-[#029641] ${isActive(l.href) ? 'text-[#029641] font-medium' : 'text-gray-500'}`}
+                    className={`block rounded-md px-3 py-2 text-sm transition-colors hover:bg-[#EEEDFE] hover:text-[#7F77DD] ${isActive(l.href) ? 'text-[#7F77DD] font-medium' : 'text-gray-500'}`}
                   >
                     {l.label}
                   </Link>
@@ -135,13 +135,13 @@ export default function Header() {
         <div className="hidden lg:flex items-center gap-3 shrink-0">
           <Link
             href="/para-pacientes"
-            className="rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:border-[#029641] hover:text-[#029641]"
+            className="rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:border-[#7F77DD] hover:text-[#7F77DD]"
           >
             Quero ser paciente
           </Link>
           <Link
             href="/contato"
-            className="rounded-full bg-[#029641] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#016d2f]"
+            className="rounded-full bg-[#7F77DD] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#26215C]"
           >
             Agendar consulta
           </Link>
@@ -149,7 +149,7 @@ export default function Header() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden p-1 text-gray-600 hover:text-[#029641] transition-colors"
+          className="lg:hidden p-1 text-gray-600 hover:text-[#7F77DD] transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Menu"
         >
@@ -210,7 +210,7 @@ export default function Header() {
             <Link href="/para-pacientes" onClick={() => setMobileOpen(false)} className="block text-center rounded-full border border-gray-300 px-4 py-2.5 text-sm font-semibold text-gray-700">
               Quero ser paciente
             </Link>
-            <Link href="/contato" onClick={() => setMobileOpen(false)} className="block text-center rounded-full bg-[#029641] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#016d2f]">
+            <Link href="/contato" onClick={() => setMobileOpen(false)} className="block text-center rounded-full bg-[#7F77DD] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#26215C]">
               Agendar consulta
             </Link>
           </div>

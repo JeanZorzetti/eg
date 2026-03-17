@@ -67,10 +67,10 @@ export default function SobreNosPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#062e24] to-[#029641] text-white py-20 lg:py-28">
+      <section className="bg-gradient-to-br from-[#26215C] to-[#7F77DD] text-white py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="inline-block text-[#10b981] text-sm font-semibold uppercase tracking-widest mb-4">
+            <span className="inline-block text-[#CECBF6] text-sm font-semibold uppercase tracking-widest mb-4">
               Nossa História
             </span>
             <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 leading-tight">
@@ -88,7 +88,7 @@ export default function SobreNosPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-[#062e24] mb-6">
+              <h2 className="text-3xl font-bold text-[#26215C] mb-6">
                 Mais de uma década transformando vidas
               </h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
@@ -107,10 +107,10 @@ export default function SobreNosPage() {
               {highlights.map((item) => (
                 <div
                   key={item.text}
-                  className="bg-[#f0fdf4] rounded-2xl p-6 border border-green-100"
+                  className="bg-[#EEEDFE] rounded-2xl p-6 border border-green-100"
                 >
                   <div className="text-3xl mb-3">{item.icon}</div>
-                  <p className="text-sm font-semibold text-[#062e24] leading-snug">{item.text}</p>
+                  <p className="text-sm font-semibold text-[#26215C] leading-snug">{item.text}</p>
                 </div>
               ))}
             </div>
@@ -122,7 +122,7 @@ export default function SobreNosPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#062e24] mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#26215C] mb-4">
               Missão, Visão e Valores
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto">
@@ -135,10 +135,10 @@ export default function SobreNosPage() {
                 key={item.title}
                 className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group"
               >
-                <div className="w-14 h-14 bg-[#f0fdf4] text-[#029641] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#029641] group-hover:text-white transition-all duration-300">
+                <div className="w-14 h-14 bg-[#EEEDFE] text-[#7F77DD] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#7F77DD] group-hover:text-white transition-all duration-300">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-bold text-[#062e24] mb-3">{item.title}</h3>
+                <h3 className="text-xl font-bold text-[#26215C] mb-3">{item.title}</h3>
                 <p className="text-gray-500 leading-relaxed">{item.description}</p>
               </div>
             ))}
@@ -150,7 +150,7 @@ export default function SobreNosPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#062e24] mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#26215C] mb-4">
               Nossa Equipe Médica
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto">
@@ -163,11 +163,11 @@ export default function SobreNosPage() {
                 key={member.name}
                 className="text-center group"
               >
-                <div className="w-24 h-24 bg-gradient-to-br from-[#029641] to-[#10b981] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-5 shadow-lg shadow-[#029641]/20 group-hover:shadow-xl group-hover:shadow-[#029641]/30 transition-all duration-300">
+                <div className="w-24 h-24 bg-gradient-to-br from-[#7F77DD] to-[#CECBF6] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-5 shadow-lg shadow-[#7F77DD]/20 group-hover:shadow-xl group-hover:shadow-[#7F77DD]/30 transition-all duration-300">
                   {getInitials(member.name)}
                 </div>
-                <h3 className="font-bold text-[#062e24] mb-1">{member.name}</h3>
-                <p className="text-[#029641] text-sm font-medium mb-1">{member.specialty}</p>
+                <h3 className="font-bold text-[#26215C] mb-1">{member.name}</h3>
+                <p className="text-[#7F77DD] text-sm font-medium mb-1">{member.specialty}</p>
                 <p className="text-xs text-gray-400">{member.crm}</p>
               </div>
             ))}
@@ -176,9 +176,9 @@ export default function SobreNosPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-[#f0fdf4] border-t border-green-100">
+      <section className="py-16 bg-[#EEEDFE] border-t border-green-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#062e24] mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#26215C] mb-4">
             Pronto para cuidar da sua saúde?
           </h2>
           <p className="text-gray-500 mb-8">
@@ -187,13 +187,13 @@ export default function SobreNosPage() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/servicos"
-              className="inline-flex items-center gap-2 bg-[#029641] hover:bg-[#016d2f] text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#029641]/25"
+              className="inline-flex items-center gap-2 bg-[#7F77DD] hover:bg-[#26215C] text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#7F77DD]/25"
             >
               Ver Serviços
             </Link>
             <Link
               href="/contato"
-              className="inline-flex items-center gap-2 border-2 border-[#029641] text-[#029641] hover:bg-[#029641] hover:text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200"
+              className="inline-flex items-center gap-2 border-2 border-[#7F77DD] text-[#7F77DD] hover:bg-[#7F77DD] hover:text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200"
             >
               Fale Conosco
             </Link>

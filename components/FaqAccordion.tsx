@@ -47,16 +47,16 @@ export default function FaqAccordion() {
         >
           <button
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
-            className="w-full flex items-center justify-between px-6 py-4 text-left bg-white hover:bg-[#f0fdf4] transition-colors"
+            className="w-full flex items-center justify-between px-6 py-4 text-left bg-white hover:bg-[#EEEDFE] transition-colors"
             aria-expanded={openIndex === index}
           >
-            <span className="font-semibold text-[#062e24] text-sm sm:text-base pr-4">
+            <span className="font-semibold text-[#26215C] text-sm sm:text-base pr-4">
               {faq.question}
             </span>
             <span
               className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 ${
                 openIndex === index
-                  ? 'bg-[#029641] text-white rotate-180'
+                  ? 'bg-[#7F77DD] text-white rotate-180'
                   : 'bg-gray-100 text-gray-500'
               }`}
             >
@@ -76,7 +76,7 @@ export default function FaqAccordion() {
             </span>
           </button>
           {openIndex === index && (
-            <div className="px-6 py-4 bg-[#f0fdf4] border-t border-green-100">
+            <div className="px-6 py-4 bg-[#EEEDFE] border-t border-green-100">
               <p className="text-gray-600 text-sm leading-relaxed">{faq.answer}</p>
             </div>
           )}

@@ -25,19 +25,19 @@ export default function ContactForm() {
 
   if (formState === 'success') {
     return (
-      <div className="flex flex-col items-center justify-center text-center py-12 px-6 bg-[#f0fdf4] rounded-2xl border border-green-100">
-        <div className="w-16 h-16 bg-[#029641] rounded-full flex items-center justify-center mb-5">
+      <div className="flex flex-col items-center justify-center text-center py-12 px-6 bg-[#EEEDFE] rounded-2xl border border-green-100">
+        <div className="w-16 h-16 bg-[#7F77DD] rounded-full flex items-center justify-center mb-5">
           <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-xl font-bold text-[#062e24] mb-2">Mensagem enviada!</h3>
+        <h3 className="text-xl font-bold text-[#26215C] mb-2">Mensagem enviada!</h3>
         <p className="text-gray-500 mb-6">
           Obrigado pelo contato. Nossa equipe retornará em até 24 horas.
         </p>
         <button
           onClick={() => setFormState('idle')}
-          className="text-[#029641] hover:text-[#016d2f] font-semibold text-sm underline"
+          className="text-[#7F77DD] hover:text-[#26215C] font-semibold text-sm underline"
         >
           Enviar nova mensagem
         </button>
@@ -48,7 +48,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label htmlFor="name" className="block text-sm font-semibold text-[#062e24] mb-1.5">
+        <label htmlFor="name" className="block text-sm font-semibold text-[#26215C] mb-1.5">
           Nome completo <span className="text-red-500">*</span>
         </label>
         <input
@@ -59,11 +59,11 @@ export default function ContactForm() {
           value={form.name}
           onChange={handleChange}
           placeholder="Seu nome completo"
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#029641]/40 focus:border-[#029641] transition-all"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7F77DD]/40 focus:border-[#7F77DD] transition-all"
         />
       </div>
       <div>
-        <label htmlFor="email" className="block text-sm font-semibold text-[#062e24] mb-1.5">
+        <label htmlFor="email" className="block text-sm font-semibold text-[#26215C] mb-1.5">
           Email <span className="text-red-500">*</span>
         </label>
         <input
@@ -74,11 +74,11 @@ export default function ContactForm() {
           value={form.email}
           onChange={handleChange}
           placeholder="seu@email.com.br"
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#029641]/40 focus:border-[#029641] transition-all"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7F77DD]/40 focus:border-[#7F77DD] transition-all"
         />
       </div>
       <div>
-        <label htmlFor="message" className="block text-sm font-semibold text-[#062e24] mb-1.5">
+        <label htmlFor="message" className="block text-sm font-semibold text-[#26215C] mb-1.5">
           Mensagem <span className="text-red-500">*</span>
         </label>
         <textarea
@@ -89,13 +89,13 @@ export default function ContactForm() {
           value={form.message}
           onChange={handleChange}
           placeholder="Como podemos ajudar você?"
-          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#029641]/40 focus:border-[#029641] transition-all resize-none"
+          className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7F77DD]/40 focus:border-[#7F77DD] transition-all resize-none"
         />
       </div>
       <button
         type="submit"
         disabled={formState === 'sending'}
-        className="w-full flex items-center justify-center gap-2 bg-[#029641] hover:bg-[#016d2f] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold px-6 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#029641]/25"
+        className="w-full flex items-center justify-center gap-2 bg-[#7F77DD] hover:bg-[#26215C] disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold px-6 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#7F77DD]/25"
       >
         {formState === 'sending' ? (
           <>

@@ -6,12 +6,12 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#029641',
-          dark: '#016d2f',
-          light: '#f0fdf4',
-          accent: '#10b981',
+          DEFAULT: '#7F77DD',
+          dark: '#26215C',
+          light: '#EEEDFE',
+          accent: '#CECBF6',
         },
-        secondary: '#062e24',
+        secondary: '#26215C',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],

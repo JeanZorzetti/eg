@@ -83,9 +83,9 @@ export default function ServicosPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#062e24] to-[#029641] text-white py-20 lg:py-28">
+      <section className="bg-gradient-to-br from-[#26215C] to-[#7F77DD] text-white py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block text-[#10b981] text-sm font-semibold uppercase tracking-widest mb-4">
+          <span className="inline-block text-[#CECBF6] text-sm font-semibold uppercase tracking-widest mb-4">
             Especialidades
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold mb-6">
@@ -106,14 +106,14 @@ export default function ServicosPage() {
                 key={service.title}
                 className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group flex flex-col"
               >
-                <div className="w-16 h-16 bg-[#f0fdf4] text-[#029641] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#029641] group-hover:text-white transition-all duration-300">
+                <div className="w-16 h-16 bg-[#EEEDFE] text-[#7F77DD] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#7F77DD] group-hover:text-white transition-all duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-bold text-[#062e24] mb-3">{service.title}</h3>
+                <h3 className="text-xl font-bold text-[#26215C] mb-3">{service.title}</h3>
                 <p className="text-gray-500 leading-relaxed flex-1 mb-6">{service.description}</p>
                 <Link
                   href="/contato"
-                  className="inline-flex items-center justify-center gap-2 bg-[#029641] hover:bg-[#016d2f] text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:shadow-md"
+                  className="inline-flex items-center justify-center gap-2 bg-[#7F77DD] hover:bg-[#26215C] text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:shadow-md"
                 >
                   Agendar Agora
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -131,7 +131,7 @@ export default function ServicosPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#062e24] mb-4">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#26215C] mb-4">
                 O que está incluso em todas as consultas
               </h2>
               <p className="text-gray-500 mb-8 leading-relaxed">
@@ -140,7 +140,7 @@ export default function ServicosPage() {
               <ul className="space-y-3">
                 {benefits.map((benefit) => (
                   <li key={benefit} className="flex items-center gap-3">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#029641] flex items-center justify-center">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#7F77DD] flex items-center justify-center">
                       <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
@@ -150,19 +150,19 @@ export default function ServicosPage() {
                 ))}
               </ul>
             </div>
-            <div className="bg-gradient-to-br from-[#f0fdf4] to-[#dcfce7] rounded-3xl p-10 text-center border border-green-100">
-              <div className="w-20 h-20 bg-[#029641] text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#029641]/25">
+            <div className="bg-gradient-to-br from-[#EEEDFE] to-[#dcfce7] rounded-3xl p-10 text-center border border-green-100">
+              <div className="w-20 h-20 bg-[#7F77DD] text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#7F77DD]/25">
                 <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-[#062e24] mb-3">Regulamentado pelo CFM</h3>
+              <h3 className="text-2xl font-bold text-[#26215C] mb-3">Regulamentado pelo CFM</h3>
               <p className="text-gray-500 leading-relaxed mb-6">
                 Todas as consultas seguem as normas do Conselho Federal de Medicina e a Lei Geral de Proteção de Dados (LGPD).
               </p>
               <Link
                 href="/contato"
-                className="inline-flex items-center gap-2 bg-[#029641] hover:bg-[#016d2f] text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#029641]/25"
+                className="inline-flex items-center gap-2 bg-[#7F77DD] hover:bg-[#26215C] text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#7F77DD]/25"
               >
                 Agendar Consulta
               </Link>
@@ -172,9 +172,9 @@ export default function ServicosPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16 bg-[#f0fdf4] border-t border-green-100">
+      <section className="py-16 bg-[#EEEDFE] border-t border-green-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-[#062e24] font-semibold text-lg mb-2">
+          <p className="text-[#26215C] font-semibold text-lg mb-2">
             Não encontrou o que procurava?
           </p>
           <p className="text-gray-500 mb-6">
@@ -182,7 +182,7 @@ export default function ServicosPage() {
           </p>
           <Link
             href="/contato"
-            className="inline-flex items-center gap-2 bg-[#029641] hover:bg-[#016d2f] text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#029641]/25 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 bg-[#7F77DD] hover:bg-[#26215C] text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#7F77DD]/25 hover:-translate-y-0.5"
           >
             Entre em Contato
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
