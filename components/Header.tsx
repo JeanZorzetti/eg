@@ -76,16 +76,15 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between gap-6">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
+        <Link href="/" className="flex items-center shrink-0">
           <Image
             src="/logo.png"
             alt="EG Telemedicina"
-            width={40}
-            height={40}
-            className="rounded-full h-10 w-10 object-cover"
+            width={120}
+            height={48}
+            className="h-10 w-auto object-contain"
             priority
           />
-          <span className="font-bold text-[#26215C] text-base hidden sm:block">EG Telemedicina</span>
         </Link>
 
         {/* Desktop nav */}

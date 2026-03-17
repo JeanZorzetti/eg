@@ -9,7 +9,7 @@ export const contentType = 'image/png'
 
 export default async function OGImage() {
   const logoData = await readFile(join(process.cwd(), 'public/logo.png'))
-  const logoSrc = `data:image/jpeg;base64,${logoData.toString('base64')}`
+  const logoSrc = `data:image/png;base64,${logoData.toString('base64')}`
 
   return new ImageResponse(
     (
@@ -84,13 +84,10 @@ export default async function OGImage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
             <img
               src={logoSrc}
-              width={72}
-              height={72}
-              style={{ borderRadius: '50%', objectFit: 'cover' }}
+              width={160}
+              height={64}
+              style={{ objectFit: 'contain' }}
             />
-            <span style={{ fontSize: 28, fontWeight: 700, color: '#FFFFFF', letterSpacing: '-0.5px' }}>
-              EG Telemedicina
-            </span>
           </div>
 
           {/* Headline */}
