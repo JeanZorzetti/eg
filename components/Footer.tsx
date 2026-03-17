@@ -10,7 +10,7 @@ const Footer = () => (
         <div>
           <div className="mb-4">
             <Link href="/" className="flex items-center gap-2">
-              <Image src="/logo.jpeg" alt="EG Telemedicina" width={40} height={40} className="rounded-full h-10 w-10 object-cover" />
+              <Image src="/logo.png" alt="EG Telemedicina" width={40} height={40} className="rounded-full h-10 w-10 object-cover" />
               <span className="font-bold text-white text-base">EG Telemedicina</span>
             </Link>
           </div>

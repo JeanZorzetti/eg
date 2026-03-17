@@ -78,7 +78,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image
-            src="/logo.jpeg"
+            src="/logo.png"
             alt="EG Telemedicina"
             width={40}
             height={40}
