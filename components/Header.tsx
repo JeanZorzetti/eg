@@ -27,6 +27,14 @@ const moreLinks = [
   { label: 'Contato', href: '/contato' },
 ]
 
+const protocolos = [
+  { label: 'Telemedicina', href: '/protocolos/telemedicina' },
+  { label: 'Programa NR-1', href: '/protocolos/nr1' },
+  { label: 'Programa Mounjaro', href: '/protocolos/mounjaro' },
+  { label: 'Projeto TEA', href: '/protocolos/tea' },
+  { label: 'Entrevista Qualificada', href: '/protocolos/entrevista-qualificada' },
+]
+
 const Chevron = ({ className }: { className?: string }) => (
   <svg className={className ?? 'h-3 w-3'} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
@@ -38,6 +46,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [specOpen, setSpecOpen] = useState(false)   // mobile only
   const [moreOpen, setMoreOpen] = useState(false)   // mobile only
+  const [protoOpen, setProtoOpen] = useState(false) // mobile only
 
   const moreRef = useRef<HTMLDivElement>(null)
 
@@ -104,6 +113,25 @@ export default function Header() {
             <Link key={l.href} href={l.href} className={linkCls(l.href)}>{l.label}</Link>
           ))}
 
+          {/* Protocolos — hover dropdown */}
+          <div className="relative group">
+            <button className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#7F77DD] ${isActive('/protocolos') ? 'text-[#7F77DD]' : 'text-gray-500'}`}>
+              Protocolos <Chevron />
+            </button>
+            <div className="absolute left-0 top-full hidden min-w-[220px] rounded-lg border border-gray-200 bg-white p-2 shadow-lg group-hover:block z-50">
+              {protocolos.map((p) => (
+                <Link key={p.href} href={p.href} className="block rounded-md px-3 py-2 text-sm text-gray-500 transition-colors hover:bg-[#EEEDFE] hover:text-[#7F77DD]">
+                  {p.label}
+                </Link>
+              ))}
+              <hr className="my-1 border-gray-100" />
+              <a href="/protocolos.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 rounded-md px-3 py-2 text-sm text-gray-400 transition-colors hover:bg-[#EEEDFE] hover:text-[#7F77DD]">
+                <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                Baixar PDF completo
+              </a>
+            </div>
+          </div>
+
           {/* Mais ▾ — click dropdown */}
           <div className="relative" ref={moreRef}>
             <button
@@ -133,17 +161,6 @@ export default function Header() {
 
         {/* Desktop CTAs */}
         <div className="hidden lg:flex items-center gap-3 shrink-0">
-          <a
-            href="/protocolos.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#CECBF6] px-4 py-2 text-sm font-semibold text-[#7F77DD] transition-colors hover:bg-[#EEEDFE] hover:border-[#7F77DD]"
-          >
-            <svg className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Protocolos
-          </a>
           <Link
             href="/para-pacientes"
             className="rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:border-[#7F77DD] hover:text-[#7F77DD]"
@@ -217,18 +234,29 @@ export default function Header() {
             ))}
           </div>
 
-          <div className="mt-4 flex flex-col gap-2">
-            <a
-              href="/protocolos.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1.5 rounded-full border border-[#CECBF6] px-4 py-2.5 text-sm font-semibold text-[#7F77DD]"
+          {/* Protocolos accordion — mobile */}
+          <div className="flex flex-col gap-1">
+            <button
+              onClick={() => setProtoOpen(!protoOpen)}
+              className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-50"
             >
-              <svg className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
               Protocolos
-            </a>
+              <Chevron className={`h-4 w-4 transition-transform ${protoOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {protoOpen && protocolos.map((p) => (
+              <Link key={p.href} href={p.href} onClick={() => setMobileOpen(false)} className="rounded-md px-3 py-2 pl-6 text-sm text-gray-500 hover:bg-gray-50">
+                {p.label}
+              </Link>
+            ))}
+            {protoOpen && (
+              <a href="/protocolos.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 rounded-md px-3 py-2 pl-6 text-sm text-gray-400 hover:bg-gray-50">
+                <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                Baixar PDF completo
+              </a>
+            )}
+          </div>
+
+          <div className="mt-4 flex flex-col gap-2">
             <Link href="/para-pacientes" onClick={() => setMobileOpen(false)} className="block text-center rounded-full border border-gray-300 px-4 py-2.5 text-sm font-semibold text-gray-700">
               Quero ser paciente
             </Link>
