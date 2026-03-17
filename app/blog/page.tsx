@@ -1,78 +1,13 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
+import { articles } from './_articles'
 
 export const metadata: Metadata = {
   title: 'Blog | EG Telemedicina',
   description:
     'Conteúdo médico com base científica: dicas de saúde, prevenção, bem-estar e orientações de especialistas.',
 }
-
-type Article = {
-  title: string
-  category: string
-  excerpt: string
-  author: string
-  date: string
-  readTime: string
-  image: string
-}
-
-const articles: Article[] = [
-  {
-    title: 'Hipertensão: como controlar sem sair de casa',
-    category: 'Cardiologia',
-    excerpt: 'Saiba como monitorar e controlar a pressão arterial com orientação médica online e hábitos simples do dia a dia.',
-    author: 'Dr. João Silva',
-    date: '10 mar 2026',
-    readTime: '5 min',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=450&fit=crop&auto=format&q=80',
-  },
-  {
-    title: 'Saúde mental: quando buscar ajuda profissional',
-    category: 'Psicologia',
-    excerpt: 'Entenda os sinais de alerta e saiba como a psicologia online pode ser tão eficaz quanto o atendimento presencial.',
-    author: 'Dra. Ana Costa',
-    date: '07 mar 2026',
-    readTime: '7 min',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=450&fit=crop&auto=format&q=80',
-  },
-  {
-    title: 'Pediatria online: dúvidas mais comuns dos pais',
-    category: 'Pediatria',
-    excerpt: 'Respondemos as perguntas mais frequentes dos pais sobre telemedicina pediátrica e segurança no atendimento infantil.',
-    author: 'Dra. Maria Santos',
-    date: '03 mar 2026',
-    readTime: '4 min',
-    image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=450&fit=crop&auto=format&q=80',
-  },
-  {
-    title: 'Dermatologia digital: o que pode ser diagnosticado por vídeo',
-    category: 'Dermatologia',
-    excerpt: 'Conheça as condições de pele que podem ser identificadas e tratadas com consulta por videochamada.',
-    author: 'Dr. Lucas Oliveira',
-    date: '28 fev 2026',
-    readTime: '6 min',
-    image: 'https://images.unsplash.com/photo-1612532275214-e4ca76d0e4d1?w=800&h=450&fit=crop&auto=format&q=80',
-  },
-  {
-    title: 'Nutrição: mitos e verdades sobre emagrecimento',
-    category: 'Nutrição',
-    excerpt: 'Um nutricionista especializado desmistifica as dietas da moda e apresenta o caminho sustentável para perder peso.',
-    author: 'Nutricionista Paula',
-    date: '24 fev 2026',
-    readTime: '8 min',
-    image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=450&fit=crop&auto=format&q=80',
-  },
-  {
-    title: 'Telemedicina e LGPD: como seus dados são protegidos',
-    category: 'Tecnologia',
-    excerpt: 'Transparência total sobre como a EG Telemedicina trata e protege suas informações de saúde com conformidade à LGPD.',
-    author: 'Equipe EG',
-    date: '20 fev 2026',
-    readTime: '5 min',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=450&fit=crop&auto=format&q=80',
-  },
-]
 
 const categoryColors: Record<string, string> = {
   Cardiologia: 'bg-red-50 text-red-600',
@@ -103,9 +38,10 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {articles.map((article, idx) => (
-              <article
-                key={article.title}
-                className="border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 group"
+              <Link
+                key={article.slug}
+                href={`/blog/${article.slug}`}
+                className="border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 group block"
               >
                 {/* Imagem */}
                 <div className="relative aspect-[16/9] overflow-hidden">
@@ -147,7 +83,7 @@ export default function BlogPage() {
                     <span>{article.readTime} de leitura</span>
                   </div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
