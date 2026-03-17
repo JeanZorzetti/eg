@@ -7,12 +7,9 @@ import { useState, useRef, useEffect } from 'react'
 
 const especialidades = [
   { label: 'Todas', href: '/especialidades' },
-  { label: 'Clínica Geral', href: '/especialidades#clinica-geral' },
-  { label: 'Cardiologia', href: '/especialidades#cardiologia' },
-  { label: 'Psicologia', href: '/especialidades#psicologia' },
-  { label: 'Pediatria', href: '/especialidades#pediatria' },
-  { label: 'Dermatologia', href: '/especialidades#dermatologia' },
-  { label: 'Nutrição', href: '/especialidades#nutricao' },
+  { label: 'Adulto', href: '/especialidades#adulto' },
+  { label: 'Infantil', href: '/especialidades#infantil' },
+  { label: 'Terapias', href: '/especialidades#terapias' },
 ]
 
 // Links visíveis diretamente na nav
