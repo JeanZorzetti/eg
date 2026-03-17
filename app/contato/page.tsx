@@ -49,7 +49,7 @@ export default function ContatoPage() {
             Fale Conosco
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold mb-6">Contato & FAQ</h1>
-          <p className="text-green-100 text-lg max-w-xl mx-auto">
+          <p className="text-purple-100 text-lg max-w-xl mx-auto">
             Estamos aqui para ajudar. Entre em contato ou confira nossas perguntas frequentes.
           </p>
         </div>
@@ -119,7 +119,7 @@ export default function ContatoPage() {
                 </div>
               </div>
 
-              <div className="bg-[#EEEDFE] rounded-2xl p-6 border border-green-100">
+              <div className="bg-[#EEEDFE] rounded-2xl p-6 border border-[#CECBF6]">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 bg-[#7F77DD] text-white rounded-xl flex items-center justify-center">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

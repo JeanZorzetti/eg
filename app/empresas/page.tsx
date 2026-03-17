@@ -118,7 +118,7 @@ export default function EmpresasPage() {
             <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">
               Saúde acessível para seus colaboradores.
             </h1>
-            <p className="text-lg text-green-100 leading-relaxed mb-8">
+            <p className="text-lg text-purple-100 leading-relaxed mb-8">
               Ofereça atendimento médico rápido e acessível sem burocracia e com custo reduzido.
             </p>
             <div className="flex flex-wrap gap-3 mb-10">
@@ -290,13 +290,13 @@ export default function EmpresasPage() {
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">
             Cuide de quem faz seu negócio crescer
           </h2>
-          <p className="text-green-100 text-lg mb-10 max-w-xl mx-auto">
+          <p className="text-purple-100 text-lg mb-10 max-w-xl mx-auto">
             Ofereça saúde de qualidade como benefício. Reduza custos e aumente a produtividade do seu time.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/contato"
-              className="bg-white text-[#7F77DD] hover:bg-green-50 font-bold px-8 py-3.5 rounded-xl transition-all duration-200"
+              className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-8 py-3.5 rounded-xl transition-all duration-200"
             >
               Solicitar proposta
             </Link>

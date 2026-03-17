@@ -25,7 +25,7 @@ export default function ContactForm() {
 
   if (formState === 'success') {
     return (
-      <div className="flex flex-col items-center justify-center text-center py-12 px-6 bg-[#EEEDFE] rounded-2xl border border-green-100">
+      <div className="flex flex-col items-center justify-center text-center py-12 px-6 bg-[#EEEDFE] rounded-2xl border border-[#CECBF6]">
         <div className="w-16 h-16 bg-[#7F77DD] rounded-full flex items-center justify-center mb-5">
           <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />

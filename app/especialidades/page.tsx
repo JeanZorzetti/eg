@@ -80,7 +80,7 @@ export default function EspecialidadesPage() {
             <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">
               Especialistas prontos para cuidar de você e da sua família
             </h1>
-            <p className="text-lg text-green-100 leading-relaxed mb-8">
+            <p className="text-lg text-purple-100 leading-relaxed mb-8">
               Mais de 30 especialidades médicas disponíveis para atendimento online com rapidez, segurança e profissionais qualificados.
             </p>
             <div className="flex flex-wrap gap-3 mb-10">
@@ -198,13 +198,13 @@ export default function EspecialidadesPage() {
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto bg-[#7F77DD] rounded-2xl px-8 py-14 text-center text-white">
           <h2 className="text-3xl font-extrabold mb-3">Sua saúde merece atenção agora.</h2>
-          <p className="text-green-100 mb-8 max-w-xl mx-auto">
+          <p className="text-purple-100 mb-8 max-w-xl mx-auto">
             Escolha a especialidade ideal e comece seu atendimento hoje mesmo.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/contato"
-              className="bg-white text-[#7F77DD] hover:bg-green-50 font-bold px-7 py-3 rounded-xl transition-all duration-200"
+              className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-7 py-3 rounded-xl transition-all duration-200"
             >
               Agendar consulta
             </Link>

@@ -76,7 +76,7 @@ export default function SobreNosPage() {
             <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 leading-tight">
               Transformando o acesso à saúde através da tecnologia
             </h1>
-            <p className="text-green-100 text-lg leading-relaxed">
+            <p className="text-purple-100 text-lg leading-relaxed">
               Fundada com a missão de eliminar as barreiras geográficas no acesso à saúde.
             </p>
           </div>
@@ -107,7 +107,7 @@ export default function SobreNosPage() {
               {highlights.map((item) => (
                 <div
                   key={item.text}
-                  className="bg-[#EEEDFE] rounded-2xl p-6 border border-green-100"
+                  className="bg-[#EEEDFE] rounded-2xl p-6 border border-[#CECBF6]"
                 >
                   <div className="text-3xl mb-3">{item.icon}</div>
                   <p className="text-sm font-semibold text-[#26215C] leading-snug">{item.text}</p>
@@ -176,7 +176,7 @@ export default function SobreNosPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-[#EEEDFE] border-t border-green-100">
+      <section className="py-16 bg-[#EEEDFE] border-t border-[#CECBF6]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-[#26215C] mb-4">
             Pronto para cuidar da sua saúde?

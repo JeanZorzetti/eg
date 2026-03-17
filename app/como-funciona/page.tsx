@@ -93,7 +93,7 @@ export default function ComoFuncionaPage() {
       <section className="bg-[#26215C] text-white text-center">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">Como funciona</h1>
-          <p className="text-lg text-green-100 leading-relaxed">
+          <p className="text-lg text-purple-100 leading-relaxed">
             Simples, rápido e digital. Atendimento médico de verdade em poucos minutos, onde você estiver.
           </p>
         </div>

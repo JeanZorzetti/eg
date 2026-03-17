@@ -84,7 +84,7 @@ export default function BlogPage() {
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">
             Blog EG Telemedicina
           </h1>
-          <p className="text-lg text-green-100 leading-relaxed">
+          <p className="text-lg text-purple-100 leading-relaxed">
             Conteúdo médico com base científica: dicas de saúde, prevenção, bem-estar e orientações de especialistas.
           </p>
         </div>

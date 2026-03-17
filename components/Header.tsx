@@ -7,9 +7,9 @@ import { useState, useRef, useEffect } from 'react'
 
 const especialidades = [
   { label: 'Todas', href: '/especialidades' },
-  { label: 'Adulto', href: '/especialidades#adulto' },
-  { label: 'Infantil', href: '/especialidades#infantil' },
-  { label: 'Terapias', href: '/especialidades#terapias' },
+  { label: 'Adulto', href: '/especialidades/adulto' },
+  { label: 'Infantil', href: '/especialidades/infantil' },
+  { label: 'Terapias', href: '/especialidades/terapias' },
 ]
 
 // Links visíveis diretamente na nav

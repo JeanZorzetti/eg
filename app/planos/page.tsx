@@ -146,7 +146,7 @@ export default function PlanosPage() {
           <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">
             Planos de Saúde Digital EG
           </h1>
-          <p className="text-lg text-green-100 leading-relaxed">
+          <p className="text-lg text-purple-100 leading-relaxed">
             Cuidado médico acessível, sem burocracia e com atendimento rápido para você e sua família.
           </p>
         </div>
@@ -279,13 +279,13 @@ export default function PlanosPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#7F77DD] to-[#26215C] rounded-2xl px-10 py-16 text-center text-white">
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">Sua saúde merece atenção agora</h2>
-          <p className="text-green-100 text-lg mb-10 max-w-xl mx-auto">
+          <p className="text-purple-100 text-lg mb-10 max-w-xl mx-auto">
             Escolha seu plano e comece a cuidar da sua saúde hoje mesmo, com médicos qualificados a um clique.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/contato"
-              className="bg-white text-[#7F77DD] hover:bg-green-50 font-bold px-8 py-3.5 rounded-xl transition-all duration-200"
+              className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-8 py-3.5 rounded-xl transition-all duration-200"
             >
               Contratar agora
             </Link>

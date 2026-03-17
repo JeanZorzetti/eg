@@ -74,7 +74,7 @@ export default function ParaPacientesPage() {
             <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">
               Saúde de qualidade onde você estiver
             </h1>
-            <p className="text-lg text-green-100 leading-relaxed mb-8">
+            <p className="text-lg text-purple-100 leading-relaxed mb-8">
               Tenha acesso a médicos especialistas de forma rápida, digital e acessível. Sem filas, sem deslocamento.
             </p>
             <div className="flex flex-wrap gap-3 mb-10">
@@ -217,7 +217,7 @@ export default function ParaPacientesPage() {
             {testimonials.map((t) => (
               <div
                 key={t.name}
-                className="bg-white rounded-2xl p-8 shadow-sm border border-green-100"
+                className="bg-white rounded-2xl p-8 shadow-sm border border-[#CECBF6]"
               >
                 <div className="flex gap-1 mb-5">
                   {[...Array(5)].map((_, i) => (
@@ -246,13 +246,13 @@ export default function ParaPacientesPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#7F77DD] to-[#26215C] rounded-2xl px-10 py-16 text-center text-white">
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">Comece agora. Cuide da sua saúde.</h2>
-          <p className="text-green-100 text-lg mb-10 max-w-xl mx-auto">
+          <p className="text-purple-100 text-lg mb-10 max-w-xl mx-auto">
             Agende sua primeira consulta e descubra como a telemedicina pode transformar o seu cuidado com a saúde.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/contato"
-              className="bg-white text-[#7F77DD] hover:bg-green-50 font-bold px-8 py-3.5 rounded-xl transition-all duration-200"
+              className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-8 py-3.5 rounded-xl transition-all duration-200"
             >
               Agendar consulta
             </Link>

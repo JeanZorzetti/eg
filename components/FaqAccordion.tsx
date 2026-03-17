@@ -76,7 +76,7 @@ export default function FaqAccordion() {
             </span>
           </button>
           {openIndex === index && (
-            <div className="px-6 py-4 bg-[#EEEDFE] border-t border-green-100">
+            <div className="px-6 py-4 bg-[#EEEDFE] border-t border-[#CECBF6]">
               <p className="text-gray-600 text-sm leading-relaxed">{faq.answer}</p>
             </div>
           )}
