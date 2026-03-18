@@ -82,7 +82,7 @@ const Footer = () => (
           <span className="hover:text-white cursor-pointer transition-colors">Termos de Uso</span>
           <span className="hover:text-white cursor-pointer transition-colors">Privacidade</span>
           <Link href="/login" className="text-xs text-white/40 hover:text-white/70 transition-colors">
-            Área do Médico
+            Admin
           </Link>
         </div>
       </div>
