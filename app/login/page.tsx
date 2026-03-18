@@ -1,27 +1,40 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function LoginPage() {
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    // Placeholder — integrar com autenticação real
-    await new Promise((r) => setTimeout(r, 1000))
+    setError('')
+
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    })
+
+    if (res.ok) {
+      router.push('/admin')
+    } else {
+      const data = await res.json()
+      setError(data.error ?? 'Erro ao entrar')
+    }
     setLoading(false)
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a1650] via-[#26215C] to-[#3d3589] flex items-center justify-center px-4">
-      {/* Card */}
       <div className="w-full max-w-md">
-        {/* Logo */}
         <div className="flex justify-center mb-8">
           <Link href="/">
             <Image
@@ -61,9 +74,6 @@ export default function LoginPage() {
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Senha
                 </label>
-                <a href="#" className="text-xs text-[#7F77DD] hover:text-[#26215C] transition-colors">
-                  Esqueci a senha
-                </a>
               </div>
               <input
                 id="password"
@@ -76,6 +86,12 @@ export default function LoginPage() {
                 className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-[#7F77DD] focus:outline-none focus:ring-2 focus:ring-[#7F77DD]/20 transition-colors"
               />
             </div>
+
+            {error && (
+              <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+                {error}
+              </p>
+            )}
 
             <button
               type="submit"
