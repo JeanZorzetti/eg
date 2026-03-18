@@ -82,7 +82,7 @@ export default function Header() {
             alt="EG Telemedicina"
             width={160}
             height={64}
-            className="h-14 w-auto object-contain"
+            className="h-16 w-auto object-contain"
             priority
           />
         </Link>
