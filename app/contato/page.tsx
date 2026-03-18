@@ -16,7 +16,7 @@ const contactInfo = [
       </svg>
     ),
     title: 'Telefone & WhatsApp',
-    lines: ['+55 (11) 4002-8922', '+55 (11) 99999-9999'],
+    lines: ['+55 (47) 99158-3876'],
   },
   {
     icon: (
@@ -132,7 +132,7 @@ export default function ContatoPage() {
                   Prefere falar pelo WhatsApp? Clique abaixo e inicie uma conversa diretamente com nossa equipe.
                 </p>
                 <a
-                  href="https://wa.me/5511999999999"
+                  href="https://wa.me/5547991583876"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-[#7F77DD] hover:bg-[#26215C] text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors"

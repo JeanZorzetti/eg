@@ -290,7 +290,7 @@ export default function PlanosPage() {
               Contratar agora
             </Link>
             <a
-              href="https://wa.me/5500000000000"
+              href="https://wa.me/5547991583876"
               target="_blank"
               rel="noopener noreferrer"
               className="border-2 border-white text-white hover:bg-white/10 font-semibold px-8 py-3.5 rounded-xl transition-all duration-200"
