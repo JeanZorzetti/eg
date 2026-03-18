@@ -25,7 +25,7 @@ const contactInfo = [
       </svg>
     ),
     title: 'Email',
-    lines: ['contato@egtelemedicina.com.br', 'suporte@egtelemedicina.com.br'],
+    lines: ['contato@egtelemedicina24h.com'],
   },
   {
     icon: (
