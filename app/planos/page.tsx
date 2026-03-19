@@ -43,7 +43,7 @@ const plans: Plan[] = [
   {
     id: 'individual',
     name: 'Plano Individual',
-    price: 'R$ 57,00',
+    price: 'R$ 44,00',
     period: '/mês',
     subtitle: 'Ideal para quem busca praticidade e economia.',
     features: [
@@ -59,7 +59,7 @@ const plans: Plan[] = [
   {
     id: 'familiar',
     name: 'Plano Familiar',
-    price: 'R$ 187,00',
+    price: 'R$ 162,00',
     period: '/mês',
     subtitle: 'Saúde para toda a família com excelente custo-benefício.',
     features: [
@@ -75,7 +75,7 @@ const plans: Plan[] = [
   {
     id: 'familiar-pro',
     name: 'Plano Familiar Pro',
-    price: 'R$ 237,00',
+    price: 'R$ 228,00',
     period: '/mês',
     subtitle: 'Mais pessoas protegidas, mais tranquilidade para você.',
     features: [
@@ -108,10 +108,10 @@ const plans: Plan[] = [
 ]
 
 const reasons = [
-  'Sem carência complicada',
+  'Sem carência',
   'Sem burocracia',
   'Atendimento de onde você estiver',
-  'Economia real vs consultas particulares',
+  'Saúde acessível',
 ]
 
 const faqs = [
@@ -201,8 +201,10 @@ export default function PlanosPage() {
 
                 <p className="text-xs text-gray-400 italic mb-5 border-t border-gray-100 pt-4">{plan.note}</p>
 
-                <Link
-                  href="/contato"
+                <a
+                  href="https://wa.me/5547991583876"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`block text-center font-semibold py-3 rounded-xl transition-all duration-200 ${
                     plan.highlighted
                       ? 'bg-[#7F77DD] text-white hover:bg-[#26215C]'
@@ -210,7 +212,7 @@ export default function PlanosPage() {
                   }`}
                 >
                   {plan.ctaLabel}
-                </Link>
+                </a>
               </div>
             ))}
           </div>
@@ -283,12 +285,14 @@ export default function PlanosPage() {
             Escolha seu plano e comece a cuidar da sua saúde hoje mesmo, com médicos qualificados a um clique.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/contato"
+            <a
+              href="https://wa.me/5547991583876"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-8 py-3.5 rounded-xl transition-all duration-200"
             >
               Contratar agora
-            </Link>
+            </a>
             <a
               href="https://wa.me/5547991583876"
               target="_blank"

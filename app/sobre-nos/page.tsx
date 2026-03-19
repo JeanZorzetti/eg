@@ -93,7 +93,7 @@ export default function SobreNosPage() {
               </h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  A EG Telemedicina foi fundada com a missão de eliminar as barreiras geográficas no acesso à saúde. Com mais de 10 anos de experiência, construímos uma plataforma robusta e humanizada que conecta pacientes a especialistas qualificados em todo o Brasil.
+                  A EG Telemedicina foi fundada com a missão de eliminar as barreiras geográficas no acesso à saúde. Construímos uma plataforma robusta e humanizada que conecta pacientes a especialistas qualificados em todo o Brasil.
                 </p>
                 <p>
                   Acreditamos que todo brasileiro merece acesso a saúde de qualidade, independente de onde mora. Por isso, desenvolvemos soluções tecnológicas que tornam as consultas médicas mais acessíveis, rápidas e seguras.
@@ -186,10 +186,10 @@ export default function SobreNosPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/servicos"
+              href="/especialidades"
               className="inline-flex items-center gap-2 bg-[#7F77DD] hover:bg-[#26215C] text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[#7F77DD]/25"
             >
-              Ver Serviços
+              Ver Especialidades
             </Link>
             <Link
               href="/contato"

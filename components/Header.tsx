@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
+import { AgendarButton } from '@/components/AgendarModal'
 
 const especialidades = [
   { label: 'Todas', href: '/especialidades' },
@@ -163,17 +164,14 @@ export default function Header() {
         {/* Desktop CTAs */}
         <div className="hidden lg:flex items-center gap-3 shrink-0">
           <Link
-            href="/para-pacientes"
+            href="/planos"
             className="rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:border-[#7F77DD] hover:text-[#7F77DD]"
           >
-            Quero ser paciente
+            Conhecer planos
           </Link>
-          <Link
-            href="/contato"
-            className="rounded-full bg-[#7F77DD] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#26215C]"
-          >
+          <AgendarButton className="rounded-full bg-[#7F77DD] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#26215C]">
             Agendar consulta
-          </Link>
+          </AgendarButton>
         </div>
 
         {/* Mobile toggle */}
@@ -258,12 +256,12 @@ export default function Header() {
           </div>
 
           <div className="mt-4 flex flex-col gap-2">
-            <Link href="/para-pacientes" onClick={() => setMobileOpen(false)} className="block text-center rounded-full border border-gray-300 px-4 py-2.5 text-sm font-semibold text-gray-700">
-              Quero ser paciente
+            <Link href="/planos" onClick={() => setMobileOpen(false)} className="block text-center rounded-full border border-gray-300 px-4 py-2.5 text-sm font-semibold text-gray-700">
+              Conhecer planos
             </Link>
-            <Link href="/contato" onClick={() => setMobileOpen(false)} className="block text-center rounded-full bg-[#7F77DD] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#26215C]">
+            <AgendarButton className="block w-full text-center rounded-full bg-[#7F77DD] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#26215C]">
               Agendar consulta
-            </Link>
+            </AgendarButton>
           </div>
         </div>
       )}

@@ -75,7 +75,7 @@ const benefits = [
   'Receita digital com validade nacional',
   'Prontuário eletrônico seguro',
   'Atendimento em até 30 minutos',
-  'Relatório pós-consulta por e-mail',
+  'Relatório pós-consulta disponível na plataforma',
   'Sigilo médico garantido',
 ]
 
