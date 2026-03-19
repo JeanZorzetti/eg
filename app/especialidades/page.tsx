@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { AgendarButton } from '@/components/AgendarModal'
 
 export const metadata: Metadata = {
   title: 'Especialidades | EG Telemedicina',
@@ -84,12 +85,9 @@ export default function EspecialidadesPage() {
               Mais de 30 especialidades médicas disponíveis para atendimento online com rapidez, segurança e profissionais qualificados.
             </p>
             <div className="flex flex-wrap gap-3 mb-10">
-              <Link
-                href="/contato"
-                className="bg-[#7F77DD] hover:bg-[#26215C] text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200"
-              >
+              <AgendarButton className="bg-[#7F77DD] hover:bg-[#26215C] text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200">
                 Agendar consulta
-              </Link>
+              </AgendarButton>
               <Link
                 href="/planos"
                 className="border-2 border-white/40 hover:border-white text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200"
@@ -158,12 +156,9 @@ export default function EspecialidadesPage() {
             ))}
           </div>
           <div className="text-center">
-            <Link
-              href="/contato"
-              className="inline-block bg-[#7F77DD] hover:bg-[#26215C] text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200"
-            >
+            <AgendarButton className="inline-flex bg-[#7F77DD] hover:bg-[#26215C] text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200">
               Agendar consulta infantil
-            </Link>
+            </AgendarButton>
           </div>
         </div>
       </section>
@@ -202,12 +197,9 @@ export default function EspecialidadesPage() {
             Escolha a especialidade ideal e comece seu atendimento hoje mesmo.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/contato"
-              className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-7 py-3 rounded-xl transition-all duration-200"
-            >
+            <AgendarButton className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-7 py-3 rounded-xl transition-all duration-200">
               Agendar consulta
-            </Link>
+            </AgendarButton>
             <a
               href="https://wa.me/5547991583876"
               target="_blank"
