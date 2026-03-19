@@ -6,11 +6,6 @@ export const metadata: Metadata = {
   description: 'Triagem clínica para operadoras de saúde. Entrevista Qualificada Gravada com declaração de saúde, controle de sinistralidade e segurança jurídica.',
 }
 
-const precos = [
-  { modalidade: 'Padrão (Médico CRM)', profissional: 'Médico Generalista', preco: 'R$ 135,00', precoB2B: 'R$ 112,50' },
-  { modalidade: 'Técnico (COREN)', profissional: 'Técnico de Enfermagem', preco: 'R$ 105,00', precoB2B: 'R$ 87,50' },
-]
-
 const fluxo = [
   { step: '1', title: 'Recebimento', desc: 'Planilha de beneficiários enviada pela contratante' },
   { step: '2', title: 'Contato', desc: 'Contato com cada beneficiário para agendamento por telefone ou canal oficial' },
@@ -137,27 +132,6 @@ export default function Page() {
                 ))}
               </tbody>
             </table>
-          </div>
-        </div>
-      </section>
-
-      {/* Preços */}
-      <section className="py-16 bg-[#EEEDFE]">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-[#26215C] mb-3 text-center">Preços por Entrevista</h2>
-          <p className="text-center text-gray-400 text-sm mb-8">Cobrança por entrevista efetivamente realizada</p>
-          <div className="grid md:grid-cols-2 gap-6">
-            {precos.map((p) => (
-              <div key={p.modalidade} className="bg-white rounded-2xl p-8 text-center shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-200">
-                <h3 className="text-lg font-bold text-[#26215C] mb-1">{p.modalidade}</h3>
-                <p className="text-sm text-gray-500 mb-4">{p.profissional}</p>
-                <p className="text-3xl font-extrabold text-[#7F77DD] mb-1">{p.preco}</p>
-                <p className="text-sm text-gray-400 mb-6">B2B: {p.precoB2B}</p>
-                <Link href="/contato" className="inline-block bg-[#7F77DD] hover:bg-[#26215C] text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 text-sm">
-                  Solicitar proposta
-                </Link>
-              </div>
-            ))}
           </div>
         </div>
       </section>

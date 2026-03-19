@@ -6,41 +6,13 @@ export const metadata: Metadata = {
   description: 'Acompanhamento multidisciplinar especializado em Transtorno do Espectro Autista. Psicologia, fonoaudiologia, fisioterapia e neuropediatria online.',
 }
 
-const planos = [
-  {
-    nome: 'Mensal',
-    subtitulo: 'Manutenção',
-    atendimentos: '5 atend./mês',
-    indicacao: 'Monitoramento contínuo e ajustes terapêuticos periódicos',
-    composicao: ['1 Clínico Geral', '1 Psiquiatra/Neuropediatra', '1 Psicologia', '1 Fonoaudiologia', '1 Fisioterapia'],
-    preco: 'R$ 1.119,00/mês',
-  },
-  {
-    nome: 'Quinzenal',
-    subtitulo: 'Intermediário',
-    atendimentos: '8 atend./mês',
-    indicacao: 'Pacientes em fase de intervenção estruturada',
-    composicao: ['1 Clínico Geral', '1 Psiquiatra/Neuropediatra', '2 Psicologia', '2 Fonoaudiologia', '2 Fisioterapia'],
-    preco: 'R$ 1.644,00/mês',
-    destaque: true,
-  },
-  {
-    nome: 'Semanal',
-    subtitulo: 'Intensivo',
-    atendimentos: '14 atend./mês',
-    indicacao: 'Diagnóstico recente ou necessidade de intervenção intensiva',
-    composicao: ['1 Clínico Geral', '1 Psiquiatra/Neuropediatra', '4 Psicologia', '4 Fonoaudiologia', '4 Fisioterapia'],
-    preco: 'R$ 2.694,00/mês',
-  },
-]
-
 const diferenciais = [
   'Atendimento 100% digital e integrado',
   'Equipe multidisciplinar especializada em TEA',
   'Autoagendamento facilitado via plataforma',
   'Prontuário eletrônico com histórico completo',
   'Monitoramento contínuo e relatórios mensais',
-  'Continuidade com os mesmos profissionais',
+  'Continuidade de atendimento',
 ]
 
 const fluxo = [
@@ -77,14 +49,9 @@ export default function Page() {
           <p className="text-base text-purple-200 leading-relaxed max-w-2xl mx-auto mb-8">
             Avaliação, diagnóstico e acompanhamento estruturado para crianças com suspeita ou diagnóstico de TEA — garantindo desenvolvimento cognitivo, emocional e motor com suporte à família.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contato" className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-xl">
-              Iniciar acompanhamento
-            </Link>
-            <Link href="/protocolos" className="border border-white/40 text-white hover:bg-white/10 font-semibold px-7 py-3.5 rounded-xl transition-all duration-200">
-              Todos os protocolos
-            </Link>
-          </div>
+          <Link href="/contato" className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-xl">
+            Iniciar acompanhamento
+          </Link>
         </div>
         <div className="mt-16 -mb-1">
           <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full text-white">
@@ -128,49 +95,13 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Planos */}
-      <section className="py-16 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-[#26215C] mb-3 text-center">Planos de Acompanhamento</h2>
-          <p className="text-center text-gray-400 text-sm mb-8">Ciclos de 2, 4 ou 6 meses. Inclui toda equipe multidisciplinar.</p>
-          <div className="grid md:grid-cols-3 gap-6">
-            {planos.map((p) => (
-              <div key={p.nome} className={`rounded-2xl border p-8 hover:-translate-y-1 hover:shadow-lg transition-all duration-200 ${p.destaque ? 'border-[#7F77DD] bg-[#EEEDFE]/30 ring-2 ring-[#7F77DD]' : 'border-[#CECBF6]'}`}>
-                {p.destaque && <span className="inline-block mb-3 text-xs font-bold px-3 py-1 rounded-full bg-[#7F77DD] text-white">Recomendado</span>}
-                <h3 className="text-xl font-bold text-[#26215C] mb-0.5">{p.nome}</h3>
-                <p className="text-sm font-medium text-[#7F77DD] mb-1">{p.subtitulo}</p>
-                <p className="text-xs text-gray-400 mb-4">{p.atendimentos}</p>
-                <p className="text-2xl font-extrabold text-[#7F77DD] mb-4">{p.preco}</p>
-                <div className="bg-[#EEEDFE] rounded-lg p-3 mb-4">
-                  <p className="text-xs font-semibold text-[#26215C] mb-1">Indicado para:</p>
-                  <p className="text-xs text-gray-600">{p.indicacao}</p>
-                </div>
-                <ul className="space-y-1.5 mb-6">
-                  {p.composicao.map((c) => (
-                    <li key={c} className="flex items-center gap-2 text-xs text-gray-500">
-                      <svg className="h-3.5 w-3.5 text-[#7F77DD] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {c}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/contato" className="inline-block bg-[#7F77DD] hover:bg-[#26215C] text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 text-sm w-full text-center">
-                  Contratar
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Benefícios */}
-      <section className="py-16 bg-[#EEEDFE]">
+      <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-[#26215C] mb-8 text-center">Benefícios para a Família</h2>
           <div className="grid sm:grid-cols-2 gap-4">
             {beneficiosFamilia.map((b) => (
-              <div key={b} className="flex items-start gap-3 bg-white rounded-xl p-5 shadow-sm">
+              <div key={b} className="flex items-start gap-3 bg-[#EEEDFE]/30 rounded-xl p-5 border border-[#CECBF6]/50">
                 <svg className="h-5 w-5 text-[#7F77DD] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>

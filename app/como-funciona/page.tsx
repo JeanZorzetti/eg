@@ -91,10 +91,18 @@ export default function ComoFuncionaPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-[#26215C] text-white text-center">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-          <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">Como funciona</h1>
-          <p className="text-lg text-purple-100 leading-relaxed">
+      <section className="bg-gradient-to-br from-[#26215C] via-[#2e2870] to-[#3D3580] text-white text-center relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-20 right-0 w-96 h-96 rounded-full bg-[#7F77DD]/20 blur-[100px]" />
+          <div className="absolute bottom-0 left-1/4 w-80 h-60 rounded-full bg-[#CECBF6]/10 blur-[80px]" />
+        </div>
+        <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-[#CECBF6] text-sm font-medium px-4 py-1.5 rounded-full mb-6 border border-white/15">
+            <span className="w-1.5 h-1.5 bg-[#CECBF6] rounded-full" />
+            5 passos simples
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-4">Como funciona a EG Telemedicina</h1>
+          <p className="text-base text-purple-100 leading-relaxed max-w-lg mx-auto">
             Simples, rápido e digital. Atendimento médico de verdade em poucos minutos, onde você estiver.
           </p>
         </div>

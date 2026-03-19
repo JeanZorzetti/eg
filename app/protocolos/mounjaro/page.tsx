@@ -3,14 +3,8 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Programa Mounjaro | EG Telemedicina',
-  description: 'Emagrecimento clínico multidisciplinar com Tirzepatida. Acompanhamento médico, nutricional e psicológico para resultados sustentáveis.',
+  description: 'Emagrecimento clínico multidisciplinar com acompanhamento médico, nutricional e psicológico para resultados sustentáveis.',
 }
-
-const planos = [
-  { nome: 'Entrada', duracao: '2 meses', preco: 'R$ 899,40', consultas: '2 consultas', nutricao: '2 sessões', psicologia: '2 sessões' },
-  { nome: 'Intermediário', duracao: '4 meses', preco: 'R$ 1.798,80', consultas: '4 consultas', nutricao: '4 sessões', psicologia: '4 sessões', destaque: true },
-  { nome: 'Premium', duracao: '6 meses', preco: 'R$ 2.698,20', consultas: '6 consultas', nutricao: '6 sessões', psicologia: '6 sessões' },
-]
 
 const fluxo = [
   { step: '1', title: 'Cadastro', desc: 'Após contratação, o paciente é cadastrado automaticamente na plataforma' },
@@ -49,19 +43,14 @@ export default function Page() {
             Programa Mounjaro
           </h1>
           <p className="text-lg text-purple-100 leading-relaxed max-w-2xl mx-auto mb-4">
-            Emagrecimento Clínico &middot; Tirzepatida &middot; Multidisciplinar
+            Emagrecimento Clínico &middot; Multidisciplinar
           </p>
           <p className="text-base text-purple-200 leading-relaxed max-w-2xl mx-auto mb-8">
             Tratamento médico estruturado para emagrecimento sustentável com acompanhamento multidisciplinar completo — médico, nutricional e psicológico.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contato" className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-xl">
-              Iniciar programa
-            </Link>
-            <Link href="/protocolos" className="border border-white/40 text-white hover:bg-white/10 font-semibold px-7 py-3.5 rounded-xl transition-all duration-200">
-              Todos os protocolos
-            </Link>
-          </div>
+          <Link href="/contato" className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-xl">
+            Iniciar programa
+          </Link>
         </div>
         <div className="mt-16 -mb-1">
           <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full text-white">
@@ -106,37 +95,11 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Planos */}
-      <section className="py-16 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-[#26215C] mb-3 text-center">Planos e Preços</h2>
-          <p className="text-center text-gray-400 text-sm mb-8">Acompanhamento clínico multidisciplinar — valor do medicamento não incluso</p>
-          <div className="grid md:grid-cols-3 gap-6">
-            {planos.map((p) => (
-              <div key={p.nome} className={`rounded-2xl border p-8 text-center hover:-translate-y-1 hover:shadow-lg transition-all duration-200 ${p.destaque ? 'border-[#7F77DD] bg-[#EEEDFE]/30 ring-2 ring-[#7F77DD]' : 'border-[#CECBF6]'}`}>
-                {p.destaque && <span className="inline-block mb-3 text-xs font-bold px-3 py-1 rounded-full bg-[#7F77DD] text-white">Mais vendido</span>}
-                <h3 className="text-xl font-bold text-[#26215C] mb-1">{p.nome}</h3>
-                <p className="text-sm text-gray-500 mb-4">{p.duracao}</p>
-                <p className="text-2xl font-extrabold text-[#7F77DD] mb-6">{p.preco}</p>
-                <div className="space-y-2 text-sm text-gray-500 mb-6">
-                  <p>{p.consultas} médicas</p>
-                  <p>{p.nutricao} nutrição</p>
-                  <p>{p.psicologia} psicologia</p>
-                </div>
-                <Link href="/contato" className="inline-block bg-[#7F77DD] hover:bg-[#26215C] text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 text-sm w-full">
-                  Contratar
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* SLA */}
-      <section className="py-16 bg-[#EEEDFE]">
+      <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-[#26215C] mb-8 text-center">Níveis de Serviço</h2>
-          <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
+          <div className="bg-[#EEEDFE]/30 rounded-2xl overflow-hidden shadow-sm border border-[#CECBF6]">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b-2 border-[#7F77DD]">
@@ -146,7 +109,7 @@ export default function Page() {
               </thead>
               <tbody>
                 {sla.map((s) => (
-                  <tr key={s.indicador} className="border-b border-gray-100">
+                  <tr key={s.indicador} className="border-b border-gray-100 bg-white">
                     <td className="py-3 px-6 text-gray-600">{s.indicador}</td>
                     <td className="py-3 px-6 text-right font-semibold text-[#7F77DD]">{s.meta}</td>
                   </tr>
