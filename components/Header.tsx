@@ -44,22 +44,24 @@ const Chevron = ({ className }: { className?: string }) => (
 export default function Header() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [specOpen, setSpecOpen] = useState(false)   // mobile only
-  const [moreOpen, setMoreOpen] = useState(false)   // mobile only
-  const [protoOpen, setProtoOpen] = useState(false) // mobile only
+  const [specOpen, setSpecOpen] = useState(false)        // mobile accordion
+  const [mobileMoreOpen, setMobileMoreOpen] = useState(false) // mobile accordion
+  const [protoOpen, setProtoOpen] = useState(false)      // mobile accordion
+  const [desktopMoreOpen, setDesktopMoreOpen] = useState(false) // desktop dropdown
 
   const moreRef = useRef<HTMLDivElement>(null)
 
-  // Fecha dropdown "Mais" ao clicar fora
+  // Fecha dropdown desktop "Mais" ao clicar fora
   useEffect(() => {
+    if (!desktopMoreOpen) return
     const handler = (e: MouseEvent) => {
       if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
-        setMoreOpen(false)
+        setDesktopMoreOpen(false)
       }
     }
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
-  }, [])
+  }, [desktopMoreOpen])
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
@@ -131,23 +133,23 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Mais ▾ — click dropdown */}
+          {/* Mais ▾ — click dropdown (desktop) */}
           <div className="relative" ref={moreRef}>
             <button
-              onClick={() => setMoreOpen((o) => !o)}
-              className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#7F77DD] ${moreActive || moreOpen ? 'text-[#7F77DD]' : 'text-gray-500'}`}
+              onClick={() => setDesktopMoreOpen((o) => !o)}
+              className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-[#7F77DD] ${moreActive || desktopMoreOpen ? 'text-[#7F77DD]' : 'text-gray-500'}`}
             >
               Mais
-              <Chevron className={`h-3 w-3 transition-transform duration-200 ${moreOpen ? 'rotate-180' : ''}`} />
+              <Chevron className={`h-3 w-3 transition-transform duration-200 ${desktopMoreOpen ? 'rotate-180' : ''}`} />
             </button>
 
-            {moreOpen && (
+            {desktopMoreOpen && (
               <div className="absolute left-0 top-full mt-1 min-w-[180px] rounded-lg border border-gray-200 bg-white p-2 shadow-lg z-50">
                 {moreLinks.map((l) => (
                   <Link
                     key={l.href}
                     href={l.href}
-                    onClick={() => setMoreOpen(false)}
+                    onClick={() => setDesktopMoreOpen(false)}
                     className={`block rounded-md px-3 py-2 text-sm transition-colors hover:bg-[#EEEDFE] hover:text-[#7F77DD] ${isActive(l.href) ? 'text-[#7F77DD] font-medium' : 'text-gray-500'}`}
                   >
                     {l.label}
@@ -218,16 +220,16 @@ export default function Header() {
               </Link>
             ))}
 
-            {/* Mais accordion */}
+            {/* Mais accordion (mobile) */}
             <button
-              onClick={() => setMoreOpen(!moreOpen)}
+              onClick={() => setMobileMoreOpen((o) => !o)}
               className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-50"
             >
               Mais
-              <Chevron className={`h-4 w-4 transition-transform ${moreOpen ? 'rotate-180' : ''}`} />
+              <Chevron className={`h-4 w-4 transition-transform ${mobileMoreOpen ? 'rotate-180' : ''}`} />
             </button>
-            {moreOpen && moreLinks.map((l) => (
-              <Link key={l.href} href={l.href} onClick={() => { setMobileOpen(false); setMoreOpen(false) }} className="rounded-md px-3 py-2 pl-6 text-sm text-gray-500 hover:bg-gray-50">
+            {mobileMoreOpen && moreLinks.map((l) => (
+              <Link key={l.href} href={l.href} onClick={() => { setMobileOpen(false); setMobileMoreOpen(false) }} className="rounded-md px-3 py-2 pl-6 text-sm text-gray-500 hover:bg-gray-50">
                 {l.label}
               </Link>
             ))}

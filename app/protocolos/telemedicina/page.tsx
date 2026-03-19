@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Protocolo Telemedicina | EG Telemedicina',
-  description: 'Consultas médicas ilimitadas 24/7 via videochamada com mais de 32 especialidades. Planos individual, familiar e empresarial.',
+  title: 'EG Telemedicina | Protocolo 01',
+  description: 'Consultas médicas ilimitadas 24/7 via videochamada com mais de 30 especialidades. Planos individual, familiar e empresarial.',
 }
 
 const planos = [
@@ -22,11 +22,11 @@ const sla = [
 
 const escopo = [
   'Consultas médicas ilimitadas via videochamada, 24h/7 dias',
-  'Mais de 32 especialidades disponíveis',
+  'Mais de 30 especialidades disponíveis',
   'Emissão de receitas médicas digitais com validade legal',
   'Emissão de atestados e declarações médicas',
   'Encaminhamentos para especialistas e exames',
-  'App próprio para agendamento e acesso às consultas',
+  'Plataforma própria para agendamento e acesso às consultas',
   'Histórico de consultas em prontuário digital',
 ]
 
@@ -42,8 +42,8 @@ const beneficiosPaciente = [
   'Atendimento médico de qualidade sem deslocamento',
   'Disponível 24h — inclusive fins de semana e feriados',
   'Acesso via smartphone, tablet ou computador',
-  'Histórico de saúde centralizado no app',
-  'Receitas e atestados válidos em qualquer farmácia',
+  'Histórico de saúde centralizado na plataforma',
+  'Receitas e atestados válidos nacionalmente',
 ]
 
 export default function Page() {
@@ -56,19 +56,14 @@ export default function Page() {
             Protocolo 01
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold mb-5 leading-tight">
-            Telemedicina EG
+            EG Telemedicina
           </h1>
           <p className="text-lg text-purple-100 leading-relaxed max-w-2xl mx-auto mb-8">
-            Consultas médicas ilimitadas 24/7 com mais de 32 especialidades. Reduza absenteísmo, otimize custos de saúde e garanta cuidado preventivo.
+            Consultas médicas ilimitadas 24/7 com mais de 30 especialidades. Reduza absenteísmo, otimize custos de saúde e garanta cuidado preventivo.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contato" className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-xl">
-              Contratar agora
-            </Link>
-            <Link href="/protocolos" className="border border-white/40 text-white hover:bg-white/10 font-semibold px-7 py-3.5 rounded-xl transition-all duration-200">
-              Todos os protocolos
-            </Link>
-          </div>
+          <Link href="/planos" className="bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-7 py-3.5 rounded-xl transition-all duration-200 hover:shadow-xl">
+            Contratar agora
+          </Link>
         </div>
         <div className="mt-16 -mb-1">
           <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full text-white">
@@ -105,7 +100,7 @@ export default function Page() {
               </div>
               <h3 className="text-lg font-bold text-[#26215C] mb-3">Pronto-Atendimento 24h</h3>
               <p className="text-sm text-gray-500 leading-relaxed">
-                Acesse o app, entre na fila e seja atendido pelo próximo médico disponível — sem agendamento prévio. Tempo médio de espera: até 15 minutos.
+                Acesse a plataforma, entre na fila e seja atendido pelo próximo médico disponível — sem agendamento prévio. Tempo médio de espera: até 15 minutos.
               </p>
             </div>
             <div className="bg-white rounded-2xl p-8 shadow-sm">
@@ -114,7 +109,7 @@ export default function Page() {
               </div>
               <h3 className="text-lg font-bold text-[#26215C] mb-3">Consulta Agendada</h3>
               <p className="text-sm text-gray-500 leading-relaxed">
-                Para especialistas e multiprofissionais, o agendamento é realizado via app. Acesso à consulta enviado por link exclusivo em até 7 dias úteis.
+                Para especialistas e multiprofissionais, o agendamento é realizado via plataforma. Acesso à consulta enviado por link exclusivo em até 7 dias úteis.
               </p>
             </div>
           </div>
@@ -191,7 +186,7 @@ export default function Page() {
                 <h3 className="text-xl font-bold text-[#26215C] mb-2">{p.nome}</h3>
                 <p className="text-sm text-gray-500 mb-4">{p.cobertura}</p>
                 <p className="text-2xl font-extrabold text-[#7F77DD] mb-6">{p.preco}</p>
-                <Link href="/contato" className="inline-block bg-[#7F77DD] hover:bg-[#26215C] text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 text-sm">
+                <Link href="/planos" className="inline-block bg-[#7F77DD] hover:bg-[#26215C] text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 text-sm">
                   Contratar
                 </Link>
               </div>
@@ -205,7 +200,7 @@ export default function Page() {
         <div className="max-w-3xl mx-auto px-6 text-center text-white">
           <h2 className="text-2xl font-bold mb-4">Comece a cuidar da saúde da sua equipe hoje</h2>
           <p className="text-purple-100 mb-8">Implantação rápida, sem infraestrutura física. Acesso para toda a empresa em poucos dias.</p>
-          <Link href="/contato" className="inline-block bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-7 py-3.5 rounded-xl transition-all duration-200">
+          <Link href="/planos" className="inline-block bg-white text-[#7F77DD] hover:bg-[#EEEDFE] font-bold px-7 py-3.5 rounded-xl transition-all duration-200">
             Fale com um consultor
           </Link>
         </div>

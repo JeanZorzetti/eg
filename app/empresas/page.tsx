@@ -56,26 +56,10 @@ const benefits = [
 ]
 
 const steps = [
-  {
-    number: '01',
-    title: 'Empresa contrata o benefício',
-    description: 'Escolha o plano ideal para sua equipe.',
-  },
-  {
-    number: '02',
-    title: 'Colaboradores recebem acesso',
-    description: 'Ativação rápida na plataforma digital.',
-  },
-  {
-    number: '03',
-    title: 'Atendimento médico online 24h',
-    description: 'Consultas com clínico geral e especialistas.',
-  },
-  {
-    number: '04',
-    title: 'Empresa acompanha resultados',
-    description: 'Relatórios e métricas de utilização.',
-  },
+  { number: '01', title: 'Empresa contrata o benefício', description: 'Escolha o plano ideal para sua equipe.' },
+  { number: '02', title: 'Colaboradores recebem acesso', description: 'Ativação rápida na plataforma digital.' },
+  { number: '03', title: 'Atendimento médico online 24h', description: 'Consultas com clínico geral e especialistas.' },
+  { number: '04', title: 'Empresa acompanha resultados', description: 'Relatórios e métricas de utilização.' },
 ]
 
 const testimonials = [
@@ -83,7 +67,7 @@ const testimonials = [
     name: 'Ricardo Almeida',
     role: 'Diretor de RH',
     initials: 'RA',
-    text: 'Reduzimos o absenteísmo em 30% após implementar a EG Telemedicina. Resultado impressionante e custo muito acessível.',
+    text: 'Reduzimos o absenteísmo em 30% após implantar o benefício. Resultado impressionante e custo muito acessível.',
   },
   {
     name: 'Fernanda Costa',
@@ -108,45 +92,52 @@ const testimonials = [
 export default function EmpresasPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-[#26215C] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-          <div className="max-w-3xl">
-            <div className="inline-block bg-white/10 text-purple-200 text-sm font-medium px-4 py-1.5 rounded-full mb-6 border border-white/20">
+      {/* Hero — igual à capa */}
+      <section className="relative bg-[#26215C] text-white overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#26215C] via-[#2e2870] to-[#3D3580]" />
+          <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-[#7F77DD]/20 blur-[120px]" />
+          <div className="absolute bottom-0 left-1/4 w-[300px] h-[200px] rounded-full bg-[#CECBF6]/10 blur-[80px]" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-28 lg:pt-24 lg:pb-32">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-purple-200 text-sm font-medium px-4 py-1.5 rounded-full mb-6 border border-white/15">
+              <span className="w-1.5 h-1.5 bg-[#CECBF6] rounded-full" />
               Para Empresas
             </div>
             <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">
               Saúde acessível para seus colaboradores.
             </h1>
-            <p className="text-lg text-purple-100 leading-relaxed mb-8">
+            <p className="text-base sm:text-lg text-purple-100 leading-relaxed mb-8 max-w-lg">
               Ofereça atendimento médico rápido e acessível sem burocracia e com custo reduzido.
             </p>
-            <div className="flex flex-wrap gap-3 mb-10">
+            <div className="flex flex-wrap gap-3 mb-8">
               <Link
                 href="/contato"
-                className="bg-[#7F77DD] hover:bg-[#26215C] text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200"
+                className="bg-[#7F77DD] hover:bg-white hover:text-[#7F77DD] text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200"
               >
                 Solicitar proposta
               </Link>
-              <Link
-                href="/contato"
+              <a
+                href="https://wa.me/5547991583876"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="border-2 border-white/40 hover:border-white text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200"
               >
                 Falar com especialista
-              </Link>
+              </a>
             </div>
-            <div className="flex flex-wrap gap-6 text-sm text-purple-200">
-              <span>
-                <span className="text-[#4ade80] font-bold mr-1">&#10003;</span>Redução de custos
-              </span>
-              <span>
-                <span className="text-[#4ade80] font-bold mr-1">&#10003;</span>Implementação rápida
-              </span>
-              <span>
-                <span className="text-[#4ade80] font-bold mr-1">&#10003;</span>Atendimento nacional
-              </span>
+            <div className="flex flex-wrap gap-5 text-sm text-purple-200">
+              <span><span className="text-[#CECBF6] font-bold mr-1">✓</span>Redução de custos</span>
+              <span><span className="text-[#CECBF6] font-bold mr-1">✓</span>Implementação rápida</span>
+              <span><span className="text-[#CECBF6] font-bold mr-1">✓</span>Atendimento nacional</span>
             </div>
           </div>
+        </div>
+        <div className="absolute bottom-0 left-0 w-full -mb-1">
+          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" preserveAspectRatio="none">
+            <path d="M0 30 C360 60 1080 0 1440 30 L1440 60 L0 60 Z" fill="#f9fafb"/>
+          </svg>
         </div>
       </section>
 
@@ -204,19 +195,19 @@ export default function EmpresasPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#26215C] mb-3">EG vs. plano tradicional</h2>
+            <h2 className="text-3xl font-bold text-[#26215C] mb-3">EG x Planos Tradicionais</h2>
             <p className="text-gray-500">Uma comparação direta para você tomar a melhor decisão.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* Plano tradicional */}
             <div className="bg-red-50 border border-red-200 rounded-2xl p-8">
-              <div className="text-red-500 font-bold text-lg mb-1">Plano tradicional</div>
+              <div className="text-red-500 font-bold text-lg mb-1">Planos Tradicionais</div>
               <div className="text-2xl font-extrabold text-gray-800 mb-3">Alto custo</div>
               <p className="text-gray-500 text-sm leading-relaxed">
                 Burocracia, carência e custos elevados que pesam no orçamento da empresa e demoram para ser implementados.
               </p>
               <ul className="mt-5 space-y-2">
-                {['Alto custo mensal', 'Carência longa', 'Burocracia na adesão', 'Cobertura limitada'].map((item) => (
+                {['Alto custo mensal', 'Carência longa', 'Burocracia na adesão', 'Altos reajustes'].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-sm text-gray-500">
                     <svg className="w-4 h-4 text-red-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
