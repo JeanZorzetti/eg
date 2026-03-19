@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { AgendarButton } from '@/components/AgendarModal'
 
 export const metadata: Metadata = {
   title: 'Como Funciona | EG Telemedicina',
@@ -180,12 +181,9 @@ export default function ComoFuncionaPage() {
             Comece agora e tenha acesso a médicos qualificados em poucos minutos.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/contato"
-              className="bg-[#7F77DD] hover:bg-[#26215C] text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200"
-            >
+            <AgendarButton className="bg-[#7F77DD] hover:bg-[#26215C] text-white font-semibold px-7 py-3 rounded-xl transition-all duration-200">
               Quero atendimento agora
-            </Link>
+            </AgendarButton>
             <Link
               href="/planos"
               className="border-2 border-[#7F77DD] text-[#7F77DD] hover:bg-[#EEEDFE] font-semibold px-7 py-3 rounded-xl transition-all duration-200"
