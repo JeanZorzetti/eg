@@ -51,7 +51,7 @@ function Modal({ onClose }: { onClose: () => void }) {
 
           {/* Especialista */}
           <Link
-            href="/para-pacientes"
+            href="/login"
             onClick={onClose}
             className="flex items-start gap-4 p-5 border-2 border-[#CECBF6] rounded-xl hover:border-[#7F77DD] hover:bg-[#EEEDFE] transition-all group"
           >
@@ -65,7 +65,7 @@ function Modal({ onClose }: { onClose: () => void }) {
               <div className="text-sm text-gray-500 mt-0.5 leading-relaxed">
                 Consulta agendada com mais de 30 especialidades. Corpo clínico próprio e qualificado.
               </div>
-              <div className="text-xs text-[#7F77DD] font-semibold mt-2">Cadastrar na plataforma →</div>
+              <div className="text-xs text-[#7F77DD] font-semibold mt-2">Acessar plataforma →</div>
             </div>
           </Link>
         </div>
