@@ -42,7 +42,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ ok: true }, { status: 201 })
   } catch (err) {
-    console.error('Register error:', err)
-    return NextResponse.json({ error: 'Erro interno ao criar conta' }, { status: 500 })
+    const message = err instanceof Error ? err.message : String(err)
+    console.error('Register error:', message)
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }
