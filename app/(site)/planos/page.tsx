@@ -47,9 +47,9 @@ const plans: Plan[] = [
     period: '/mês',
     subtitle: 'Ideal para quem busca praticidade e economia.',
     features: [
-      'Consultas online com clínico geral',
+      'Consultas com clínico geral',
+      'Consultas com especialistas (+30 especialidades)',
       'Receitas e atestados digitais',
-      'Orientações médicas',
       'Atendimento rápido',
     ],
     note: 'Perfeito para uso pessoal com previsibilidade de custo.',
