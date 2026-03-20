@@ -30,3 +30,9 @@ export async function getSession() {
     return null
   }
 }
+
+export async function getPatientSession() {
+  const session = await getSession()
+  if (!session || session.role !== 'PATIENT') return null
+  return session
+}

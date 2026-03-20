@@ -1,12 +1,16 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const registered = searchParams.get('registered') === 'true'
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -23,101 +27,84 @@ export default function LoginPage() {
       body: JSON.stringify({ email, password }),
     })
 
+    const data = await res.json()
+
     if (res.ok) {
-      router.push('/admin')
+      router.push(data.role === 'PATIENT' ? '/plataforma' : '/admin')
     } else {
-      const data = await res.json()
       setError(data.error ?? 'Erro ao entrar')
     }
     setLoading(false)
   }
 
+  const inputCls = 'w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-[#7F77DD] focus:outline-none focus:ring-2 focus:ring-[#7F77DD]/20 transition-colors'
+
+  return (
+    <div className="bg-white rounded-2xl shadow-2xl p-8">
+      <h1 className="text-2xl font-bold text-[#26215C] mb-1">Entrar</h1>
+      <p className="text-sm text-gray-500 mb-6">Acesse sua conta na plataforma</p>
+
+      {registered && (
+        <div className="mb-5 text-sm text-green-700 bg-green-50 border border-green-200 rounded-lg px-3 py-2">
+          Conta criada com sucesso! Faça login abaixo.
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">E-mail</label>
+          <input id="email" type="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="seu@email.com" className={inputCls} />
+        </div>
+
+        <div>
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1.5">Senha</label>
+          <input id="password" type="password" autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" className={inputCls} />
+        </div>
+
+        {error && (
+          <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">{error}</p>
+        )}
+
+        <button type="submit" disabled={loading} className="w-full rounded-xl bg-[#7F77DD] py-3 text-sm font-semibold text-white transition-colors hover:bg-[#26215C] disabled:opacity-60 disabled:cursor-not-allowed">
+          {loading ? (
+            <span className="flex items-center justify-center gap-2">
+              <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+              </svg>
+              Entrando...
+            </span>
+          ) : (
+            'Entrar'
+          )}
+        </button>
+      </form>
+
+      <p className="text-center text-sm text-gray-500 mt-6">
+        Ainda não tem conta?{' '}
+        <Link href="/cadastro" className="text-[#7F77DD] font-semibold hover:underline">Cadastre-se</Link>
+      </p>
+    </div>
+  )
+}
+
+export default function LoginPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1a1650] via-[#26215C] to-[#3d3589] flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="flex justify-center mb-8">
           <Link href="/">
-            <Image
-              src="/logo.png"
-              alt="EG Telemedicina"
-              width={180}
-              height={72}
-              className="h-16 w-auto object-contain brightness-0 invert"
-              priority
-            />
+            <Image src="/logo.png" alt="EG Telemedicina" width={180} height={72} className="h-16 w-auto object-contain brightness-0 invert" priority />
           </Link>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
-          <h1 className="text-2xl font-bold text-[#26215C] mb-1">Área Administrativa</h1>
-          <p className="text-sm text-gray-500 mb-8">Acesso restrito a colaboradores EG</p>
-
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
-                E-mail
-              </label>
-              <input
-                id="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="seu@email.com"
-                className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-[#7F77DD] focus:outline-none focus:ring-2 focus:ring-[#7F77DD]/20 transition-colors"
-              />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Senha
-                </label>
-              </div>
-              <input
-                id="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-[#7F77DD] focus:outline-none focus:ring-2 focus:ring-[#7F77DD]/20 transition-colors"
-              />
-            </div>
-
-            {error && (
-              <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
-                {error}
-              </p>
-            )}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full rounded-xl bg-[#7F77DD] py-3 text-sm font-semibold text-white transition-colors hover:bg-[#26215C] disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {loading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
-                  </svg>
-                  Entrando...
-                </span>
-              ) : (
-                'Entrar'
-              )}
-            </button>
-          </form>
-        </div>
+        <Suspense>
+          <LoginForm />
+        </Suspense>
 
         <p className="text-center text-xs text-white/40 mt-6">
           &copy; {new Date().getFullYear()} EG Telemedicina &mdash;{' '}
-          <Link href="/" className="hover:text-white/70 transition-colors">
-            Voltar ao site
-          </Link>
+          <Link href="/" className="hover:text-white/70 transition-colors">Voltar ao site</Link>
         </p>
       </div>
     </div>
