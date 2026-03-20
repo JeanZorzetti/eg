@@ -39,8 +39,12 @@ export default function CadastroPage() {
     if (res.ok) {
       router.push('/login?registered=true')
     } else {
-      const data = await res.json()
-      setError(data.error ?? 'Erro ao criar conta')
+      try {
+        const data = await res.json()
+        setError(data.error ?? 'Erro ao criar conta')
+      } catch {
+        setError('Erro ao criar conta. Tente novamente.')
+      }
     }
     setLoading(false)
   }
