@@ -51,7 +51,15 @@ const links = [
   },
 ]
 
-export default function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
+export default function Sidebar({
+  open,
+  onClose,
+  isSubscriber,
+}: {
+  open: boolean
+  onClose: () => void
+  isSubscriber: boolean
+}) {
   const pathname = usePathname()
 
   const isActive = (href: string) =>
@@ -65,7 +73,7 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
       )}
 
       <aside
-        className={`fixed top-0 left-0 z-50 h-full w-64 bg-white border-r border-gray-200 transform transition-transform duration-200 lg:translate-x-0 lg:static lg:z-auto ${
+        className={`fixed top-0 left-0 z-50 h-full w-64 bg-white border-r border-gray-200 flex flex-col transform transition-transform duration-200 lg:translate-x-0 lg:static lg:z-auto ${
           open ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -76,7 +84,7 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
           <p className="text-xs text-gray-400 mt-0.5">Plataforma do Paciente</p>
         </div>
 
-        <nav className="p-4 space-y-1">
+        <nav className="p-4 space-y-1 flex-1">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -92,7 +100,52 @@ export default function Sidebar({ open, onClose }: { open: boolean; onClose: () 
               {link.label}
             </Link>
           ))}
+
+          {/* Assinar / Planos link — always visible */}
+          <Link
+            href="/plataforma/assinar"
+            onClick={onClose}
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
+              isActive('/plataforma/assinar')
+                ? 'bg-[#7F77DD] text-white'
+                : 'bg-[#EEEDFE] text-[#7F77DD] hover:bg-[#CECBF6]'
+            }`}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+            </svg>
+            Planos
+            {!isSubscriber && (
+              <span className="ml-auto bg-[#7F77DD] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                Upgrade
+              </span>
+            )}
+          </Link>
         </nav>
+
+        {/* Upgrade card for non-subscribers */}
+        {!isSubscriber && (
+          <div className="p-4">
+            <Link
+              href="/plataforma/assinar"
+              onClick={onClose}
+              className="block rounded-xl bg-gradient-to-br from-[#7F77DD] to-[#26215C] text-white p-4 text-center hover:opacity-90 transition-opacity"
+            >
+              <div className="flex items-center justify-center gap-1.5 mb-1">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span className="text-sm font-bold">Ative seu plano</span>
+              </div>
+              <p className="text-xs text-white/80 mb-2">
+                Consulte +30 especialistas
+              </p>
+              <span className="text-xs font-semibold bg-white/20 px-3 py-1 rounded-full">
+                Assinar agora
+              </span>
+            </Link>
+          </div>
+        )}
       </aside>
     </>
   )

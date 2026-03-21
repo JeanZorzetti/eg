@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
 type Profile = {
   name: string
@@ -11,6 +12,19 @@ type Profile = {
   gender: string | null
 }
 
+type SubscriptionStatus = {
+  isSubscriber: boolean
+  plan: string | null
+  status: string | null
+}
+
+const PLAN_LABELS: Record<string, string> = {
+  INDIVIDUAL: 'Individual',
+  FAMILIAR: 'Familiar',
+  FAMILIAR_PRO: 'Familiar Pro',
+  EMPRESARIAL: 'Empresarial',
+}
+
 export default function PerfilPage() {
   const [profile, setProfile] = useState<Profile | null>(null)
   const [form, setForm] = useState({ name: '', phone: '', birthDate: '', gender: '' })
@@ -18,20 +32,23 @@ export default function PerfilPage() {
   const [saving, setSaving] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
+  const [subscriptionStatus, setSubscriptionStatus] = useState<SubscriptionStatus | null>(null)
 
   useEffect(() => {
-    fetch('/api/plataforma/profile')
-      .then((r) => r.json())
-      .then((data: Profile) => {
-        setProfile(data)
-        setForm({
-          name: data.name,
-          phone: data.phone ?? '',
-          birthDate: data.birthDate ? data.birthDate.split('T')[0] : '',
-          gender: data.gender ?? '',
-        })
-        setLoading(false)
+    Promise.all([
+      fetch('/api/plataforma/profile').then((r) => r.json()),
+      fetch('/api/plataforma/subscription-status').then((r) => r.json()),
+    ]).then(([profileData, subData]: [Profile, SubscriptionStatus]) => {
+      setProfile(profileData)
+      setForm({
+        name: profileData.name,
+        phone: profileData.phone ?? '',
+        birthDate: profileData.birthDate ? profileData.birthDate.split('T')[0] : '',
+        gender: profileData.gender ?? '',
       })
+      setSubscriptionStatus(subData)
+      setLoading(false)
+    })
   }, [])
 
   const set = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
@@ -133,6 +150,40 @@ export default function PerfilPage() {
           {saving ? 'Salvando...' : 'Salvar alterações'}
         </button>
       </form>
+
+      {/* Subscription status */}
+      {subscriptionStatus && (
+        <div className={`rounded-2xl border p-5 ${
+          subscriptionStatus.isSubscriber
+            ? 'bg-green-50 border-green-200'
+            : 'bg-[#EEEDFE] border-[#CECBF6]'
+        }`}>
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-0.5">
+                Seu plano
+              </p>
+              {subscriptionStatus.isSubscriber && subscriptionStatus.plan ? (
+                <p className="text-base font-bold text-green-700">
+                  {PLAN_LABELS[subscriptionStatus.plan] ?? subscriptionStatus.plan} — Ativo
+                </p>
+              ) : (
+                <p className="text-base font-semibold text-[#26215C]">
+                  Nenhum (sem assinatura ativa)
+                </p>
+              )}
+            </div>
+            {!subscriptionStatus.isSubscriber && (
+              <Link
+                href="/plataforma/assinar"
+                className="shrink-0 bg-[#7F77DD] text-white text-sm font-semibold px-4 py-2 rounded-xl hover:bg-[#26215C] transition-colors whitespace-nowrap"
+              >
+                Escolher plano
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

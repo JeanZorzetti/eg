@@ -181,12 +181,12 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
 **Objetivo**: Transformar desejo em ação com o menor atrito possível.
 
 ### 4.1 Página de Checkout na Plataforma
-- [ ] `/plataforma/assinar` — página de escolha de plano:
+- [x] `/plataforma/assinar` — página de escolha de plano:
   - 3 cards (Individual R$44, Familiar R$162, Familiar Pro R$228)
   - Anchoring: "Plano de saúde tradicional: R$400-800/mês"
   - Badge "Sem carência — consulte hoje mesmo"
   - Parcelamento: "ou 12x de R$3,67" (para Individual)
-- [ ] Comparativo visual EG vs Plano Tradicional:
+- [x] Comparativo visual EG vs Plano Tradicional:
   ```
   ❌ Carência 30-180 dias    vs   ✅ Sem carência
   ❌ R$400-800/mês           vs   ✅ A partir de R$44/mês
@@ -195,18 +195,17 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
   ```
 
 ### 4.2 Integração de Pagamento
-- [ ] PIX como método principal:
-  - Gerar QR code PIX na tela
-  - Webhook de confirmação automática
-  - Copy: "Pague via PIX e confirme instantaneamente"
-  - Desconto PIX: R$44 PIX vs R$49 cartão (loss aversion)
+- [x] PIX como método principal (via WhatsApp — sem gateway ainda):
+  - Modal de checkout com link para WhatsApp pré-preenchido
+  - Copy: "Pague via PIX com 10% de desconto"
+  - Desconto PIX exibido em cada card
 - [ ] Cartão de crédito como secundário (Stripe ou MercadoPago)
 - [ ] Boleto bancário como terciário
 
 ### 4.3 Ativação Pós-Pagamento
-- [ ] Tela de sucesso celebratória:
+- [x] Tela de sucesso celebratória (`/plataforma/assinar/sucesso`):
   ```
-  🎉 Plano ativado!
+  Plano ativado com sucesso!
 
   Você agora tem acesso a:
   ✅ Consultas com clínico geral
@@ -214,12 +213,14 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
   ✅ Receitas e atestados digitais
 
   [Agendar minha primeira consulta →]
+  [Explorar médicos →]
   ```
-- [ ] Redirect automático para agendamento
-- [ ] WhatsApp de boas-vindas: "Seu plano está ativo! Agende sua primeira consulta: [link]"
+- [x] API admin `/api/admin/subscriptions` POST para ativação manual (ADMIN/SUPER_ADMIN)
+- [x] CTAs de conversão em /plataforma/consultas e /plataforma/perfil para não-assinantes
 
 ### 4.4 WhatsApp como Canal de Conversão
-- [ ] Botão "Falar no WhatsApp" em todos os pontos de conversão
+- [x] Botão "Falar no WhatsApp" na página /plataforma/assinar e no modal de checkout
+- [x] Mensagem pré-preenchida com o plano escolhido
 - [ ] Bot de WhatsApp (fase futura) para:
   - Tirar dúvidas sobre planos
   - Enviar link de pagamento PIX

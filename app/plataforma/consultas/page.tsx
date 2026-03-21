@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import StatusBadge from '@/components/plataforma/StatusBadge'
 
 type Appointment = {
@@ -12,14 +13,24 @@ type Appointment = {
   notes: string | null
 }
 
+type SubscriptionStatus = {
+  isSubscriber: boolean
+  plan: string | null
+}
+
 export default function ConsultasPage() {
   const [appointments, setAppointments] = useState<Appointment[]>([])
   const [loading, setLoading] = useState(true)
   const [cancelling, setCancelling] = useState<string | null>(null)
+  const [subscriptionStatus, setSubscriptionStatus] = useState<SubscriptionStatus | null>(null)
 
   const load = async () => {
-    const res = await fetch('/api/plataforma/appointments')
-    if (res.ok) setAppointments(await res.json())
+    const [apptRes, subRes] = await Promise.all([
+      fetch('/api/plataforma/appointments'),
+      fetch('/api/plataforma/subscription-status'),
+    ])
+    if (apptRes.ok) setAppointments(await apptRes.json())
+    if (subRes.ok) setSubscriptionStatus(await subRes.json())
     setLoading(false)
   }
 
@@ -53,12 +64,41 @@ export default function ConsultasPage() {
     <div className="space-y-6">
       <h1 className="text-2xl font-bold text-[#26215C]">Minhas Consultas</h1>
 
+      {/* No subscription CTA */}
+      {!subscriptionStatus?.isSubscriber && (
+        <div className="bg-[#EEEDFE] border border-[#CECBF6] rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div className="w-12 h-12 rounded-full bg-[#7F77DD] flex items-center justify-center shrink-0">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <div className="flex-1">
+            <p className="text-base font-semibold text-[#26215C]">Você não tem um plano ativo</p>
+            <p className="text-sm text-gray-600 mt-0.5">
+              Assine um plano para agendar consultas com +30 especialistas, sem carência.
+            </p>
+          </div>
+          <Link
+            href="/plataforma/assinar"
+            className="shrink-0 bg-[#7F77DD] text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-[#26215C] transition-colors whitespace-nowrap"
+          >
+            Assinar agora
+          </Link>
+        </div>
+      )}
+
       {appointments.length === 0 ? (
         <div className="bg-white rounded-2xl border border-dashed border-gray-300 p-8 text-center">
           <p className="text-gray-500 mb-3">Você ainda não tem consultas</p>
-          <a href="/plataforma/agendar" className="text-[#7F77DD] font-semibold hover:underline">
-            Agendar primeira consulta
-          </a>
+          {subscriptionStatus?.isSubscriber ? (
+            <Link href="/plataforma/agendar" className="text-[#7F77DD] font-semibold hover:underline">
+              Agendar primeira consulta
+            </Link>
+          ) : (
+            <Link href="/plataforma/assinar" className="text-[#7F77DD] font-semibold hover:underline">
+              Assine um plano para começar
+            </Link>
+          )}
         </div>
       ) : (
         <div className="space-y-3">

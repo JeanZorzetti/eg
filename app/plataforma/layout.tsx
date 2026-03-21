@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { getPatientSession } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
+import { hasActiveSubscription } from '@/lib/subscription'
 import PlataformaShell from './PlataformaShell'
 
 export const metadata = {
@@ -11,10 +12,17 @@ export default async function PlataformaLayout({ children }: { children: React.R
   const session = await getPatientSession()
   if (!session) redirect('/login')
 
-  const user = await prisma.user.findUnique({
-    where: { id: session.id },
-    select: { name: true },
-  })
+  const [user, isSubscriber] = await Promise.all([
+    prisma.user.findUnique({
+      where: { id: session.id },
+      select: { name: true },
+    }),
+    hasActiveSubscription(session.id),
+  ])
 
-  return <PlataformaShell name={user?.name ?? 'Paciente'}>{children}</PlataformaShell>
+  return (
+    <PlataformaShell name={user?.name ?? 'Paciente'} isSubscriber={isSubscriber}>
+      {children}
+    </PlataformaShell>
+  )
 }
