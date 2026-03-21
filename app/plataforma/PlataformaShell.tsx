@@ -3,12 +3,14 @@
 import { useState } from 'react'
 import Sidebar from '@/components/plataforma/Sidebar'
 import PlataformaHeader from '@/components/plataforma/PlataformaHeader'
+import HealthQuestionnaire from '@/components/plataforma/HealthQuestionnaire'
 
 export default function PlataformaShell({ name, children }: { name: string; children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <div className="flex h-screen bg-gray-50">
+      <HealthQuestionnaire />
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex-1 flex flex-col min-w-0">
         <PlataformaHeader name={name} onToggleSidebar={() => setSidebarOpen((o) => !o)} />

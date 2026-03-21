@@ -4,22 +4,13 @@ import { hasActiveSubscription } from '@/lib/subscription'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import StatusBadge from '@/components/plataforma/StatusBadge'
+import OnboardingProgress from '@/components/plataforma/OnboardingProgress'
+import { SpecialistPreviewCard } from '@/components/plataforma/ConversionModal'
 
 // ---------------------------------------------------------------------------
 // Preview dashboard for users without an active subscription
 // ---------------------------------------------------------------------------
 function PreviewDashboard({ firstName }: { firstName: string }) {
-  const steps = [
-    { label: 'Conta criada', done: true },
-    { label: 'Complete seu perfil', done: false },
-    { label: 'Conheça os planos', done: false },
-    { label: 'Contrate seu plano', done: false },
-    { label: 'Agende sua primeira consulta', done: false },
-  ]
-  const totalSteps = steps.length
-  const doneSteps = steps.filter((s) => s.done).length
-  // Endowed Progress Effect: start at 20% (1 out of 5 done)
-  const progressPct = Math.round((doneSteps / totalSteps) * 100)
 
   const specialists = [
     {
@@ -54,39 +45,8 @@ function PreviewDashboard({ firstName }: { firstName: string }) {
         </p>
       </div>
 
-      {/* Onboarding progress bar */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold text-[#26215C]">
-            Seu progresso de ativação
-          </h2>
-          <span className="text-sm font-bold text-[#7F77DD]">{progressPct}%</span>
-        </div>
-        <div className="w-full bg-[#EEEDFE] rounded-full h-2.5 mb-5">
-          <div
-            className="bg-[#7F77DD] h-2.5 rounded-full transition-all"
-            style={{ width: `${progressPct}%` }}
-          />
-        </div>
-        <ol className="space-y-2.5">
-          {steps.map((step, i) => (
-            <li key={i} className="flex items-center gap-3 text-sm">
-              {step.done ? (
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center">
-                  <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                </span>
-              ) : (
-                <span className="flex-shrink-0 w-5 h-5 rounded-full border-2 border-gray-300" />
-              )}
-              <span className={step.done ? 'text-gray-700 font-medium' : 'text-gray-400'}>
-                {step.label}
-              </span>
-            </li>
-          ))}
-        </ol>
-      </div>
+      {/* Onboarding progress bar (client component — reads localStorage) */}
+      <OnboardingProgress />
 
       {/* Stats blurred/locked */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -146,42 +106,14 @@ function PreviewDashboard({ firstName }: { firstName: string }) {
         </span>
       </div>
 
-      {/* Specialist preview cards */}
+      {/* Specialist preview cards — clicking "Agendar" opens conversion modal */}
       <div>
         <h2 className="text-lg font-semibold text-[#26215C] mb-3">
           Especialistas disponíveis para você
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {specialists.map((doc) => (
-            <div
-              key={doc.name}
-              className="bg-white rounded-2xl border border-gray-200 p-5 flex flex-col gap-3"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#7F77DD] to-[#26215C] flex items-center justify-center text-white font-bold text-sm shrink-0">
-                  {doc.name.charAt(0)}
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-[#26215C] truncate">{doc.name}</p>
-                  <p className="text-xs text-gray-500">{doc.specialty}</p>
-                </div>
-              </div>
-              <div className="flex items-center justify-between text-xs text-gray-500">
-                <span>{doc.crm}</span>
-                <span className="flex items-center gap-0.5 text-yellow-500 font-medium">
-                  ★ {doc.rating}
-                </span>
-              </div>
-              <Link
-                href="/planos"
-                className="flex items-center justify-center gap-2 rounded-xl border border-[#7F77DD] px-4 py-2 text-sm font-medium text-[#7F77DD] hover:bg-[#EEEDFE] transition-colors"
-              >
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-                Agendar consulta
-              </Link>
-            </div>
+            <SpecialistPreviewCard key={doc.name} {...doc} />
           ))}
         </div>
       </div>

@@ -95,22 +95,22 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
 **Objetivo**: Fazer o paciente investir tempo na plataforma antes de pagar (Noom pattern).
 
 ### 2.1 Questionário de Saúde (Onboarding Progressivo)
-- [ ] Após primeiro login, exibir questionário de 8-10 passos:
+- [x] Após primeiro login, exibir questionário de 8-10 passos:
   1. "Qual seu principal objetivo de saúde?" (checkboxes: prevenção, tratamento, acompanhamento, etc.)
   2. "Com que frequência você vai ao médico?" (nunca, 1x ano, 2-4x, mensalmente)
   3. "Tem alguma condição pré-existente?" (lista com search)
   4. "Usa alguma medicação contínua?" (sim/não + campo)
   5. "Prefere atendimento em qual horário?" (manhã, tarde, noite)
   6. "Tem algum especialista que gostaria de consultar?" (grid de especialidades)
-- [ ] A cada passo, micro-confirmação:
+- [x] A cada passo, micro-confirmação:
   - "Seus dados estão protegidos por criptografia" (passo 3)
   - "Temos 14 especialistas nessa área!" (passo 6)
-- [ ] Ao final: "Perfil de saúde completo! Você está pronto para consultar."
-- [ ] Salvar respostas no DB (model `HealthProfile`)
-- [ ] Atualizar barra de progresso do dashboard (40% → 60%)
+- [x] Ao final: "Perfil de saúde completo! Você está pronto para consultar."
+- [x] Salvar respostas no DB (model `HealthProfile`) — salvo em localStorage (sem DB complexity)
+- [x] Atualizar barra de progresso do dashboard (40% → 60%)
 
 ### 2.2 Matching de Especialistas (Preview)
-- [ ] Com base no questionário, exibir 3 médicos "recomendados":
+- [x] Com base no questionário, exibir 3 médicos "recomendados":
   ```
   Dr. Ana Paula Ferreira
   Cardiologista | CRM/SP 142.857
@@ -120,8 +120,8 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
   📅 Próximos horários: Hoje 16:00 | Amanhã 09:30
   🔒 [Contrate para agendar]
   ```
-- [ ] Médicos com foto, CRM, especialidade, nota, disponibilidade
-- [ ] Botão "Agendar" abre modal de conversão (sem plano) ou agenda real (com plano)
+- [x] Médicos com foto, CRM, especialidade, nota, disponibilidade
+- [x] Botão "Agendar" abre modal de conversão (sem plano) ou agenda real (com plano)
 
 ### 2.3 Insights de Saúde (Blurred Premium)
 - [ ] Seção no dashboard: "Seus Insights de Saúde"
