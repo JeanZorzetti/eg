@@ -33,6 +33,23 @@ function Initials({ name }: { name: string }) {
   )
 }
 
+function StarRating({ rating }: { rating: number }) {
+  const full = Math.floor(rating)
+  const half = rating - full >= 0.5
+  const empty = 5 - full - (half ? 1 : 0)
+  return (
+    <div className="flex items-center gap-0.5">
+      {Array.from({ length: full }).map((_, i) => (
+        <span key={`f-${i}`} className="text-yellow-400 text-sm">★</span>
+      ))}
+      {half && <span className="text-yellow-400 text-sm">½</span>}
+      {Array.from({ length: empty }).map((_, i) => (
+        <span key={`e-${i}`} className="text-gray-300 text-sm">★</span>
+      ))}
+    </div>
+  )
+}
+
 export default function DoctorCard({ doctor, isSubscriber }: Props) {
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -67,9 +84,13 @@ export default function DoctorCard({ doctor, isSubscriber }: Props) {
 
         {/* Rating */}
         <div className="flex items-center gap-1.5">
-          <span className="text-yellow-400 text-sm">★</span>
+          <StarRating rating={doctor.rating} />
           <span className="text-sm font-semibold text-[#26215C]">{doctor.rating.toFixed(1)}</span>
-          <span className="text-xs text-gray-400">({doctor.reviewCount} avaliações)</span>
+          {doctor.reviewCount === 0 ? (
+            <span className="text-xs text-gray-400">Sem avaliações ainda</span>
+          ) : (
+            <span className="text-xs text-gray-400">({doctor.reviewCount} avaliações)</span>
+          )}
         </div>
 
         {/* Bio */}

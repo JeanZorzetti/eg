@@ -7,6 +7,7 @@ import StatusBadge from '@/components/plataforma/StatusBadge'
 import OnboardingProgress from '@/components/plataforma/OnboardingProgress'
 import { SpecialistPreviewCard } from '@/components/plataforma/ConversionModal'
 import DashboardNudges from '@/components/plataforma/DashboardNudges'
+import TestimonialsCarousel from '@/components/plataforma/TestimonialsCarousel'
 
 // ---------------------------------------------------------------------------
 // Preview dashboard for users without an active subscription
@@ -187,6 +188,9 @@ function PreviewDashboard({ firstName }: { firstName: string }) {
           </a>
         </p>
       </div>
+
+      {/* Testimonials carousel */}
+      <TestimonialsCarousel />
     </div>
   )
 }

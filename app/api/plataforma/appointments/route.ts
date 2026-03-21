@@ -15,6 +15,11 @@ export async function GET(request: NextRequest) {
       ...(status ? { status: status as 'SCHEDULED' | 'CONFIRMED' | 'COMPLETED' | 'CANCELLED' } : {}),
     },
     orderBy: { dateTime: 'desc' },
+    include: {
+      review: {
+        select: { rating: true, comment: true },
+      },
+    },
   })
 
   return NextResponse.json(appointments)

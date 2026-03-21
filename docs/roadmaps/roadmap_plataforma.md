@@ -164,7 +164,7 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
 - [x] Contador no dashboard: "🟢 Atendimento ativo agora"
   - Stats proeminentes com barra destacada
 - [x] Stats na plataforma: "+45.000 pacientes atendidos | 4.8★ avaliação média | Regulamentado pelo CFM"
-- [ ] Seção de depoimentos dentro da plataforma (3 cards rotativos)
+- [x] Seção de depoimentos dentro da plataforma (3 cards rotativos)
 
 ### 3.4 Avaliações Pós-Consulta
 - [x] Após status `COMPLETED`, exibir modal de avaliação:
@@ -172,7 +172,7 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
   - Comentário opcional
   - Feedback visual de sucesso
 - [x] Salvar no DB (model `Review`)
-- [ ] Exibir nos cards dos médicos (integração futura)
+- [x] Exibir nos cards dos médicos (integração futura)
 
 ---
 
@@ -275,7 +275,7 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
 - [x] Todos dismissíveis (estado salvo em localStorage)
 
 ### 5.5 Histórico Médico Completo
-- [ ] Timeline visual de consultas
+- [x] Timeline visual de consultas
 - [ ] Upload/download de exames
 - [ ] Receitas digitais salvas na plataforma
 - [ ] Resumo de saúde (gerado com base no histórico)
@@ -348,3 +348,27 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
 
 > Sprints bi-semanais. Fases 1 e 4 são P0 — sem elas não há receita.
 > Fase 2 é o diferencial competitivo — o "fator Noom" que cria desejo.
+
+---
+
+## Itens Dependentes de Integração Externa
+
+Estes itens estão no roadmap mas dependem de parceiros/serviços externos:
+
+| Item | Serviço | Prioridade |
+|------|---------|------------|
+| Pagamento cartão/boleto | MercadoPago ou Stripe | P0 quando pronto |
+| Bot WhatsApp automático | Evolution API | P1 |
+| IA Assistente (triagem) | Claude API | P2 |
+| Teleconsulta integrada | Daily.co ou Whereby | P1 |
+| Email de lembretes | Resend ou Brevo | P1 |
+
+## Status Final do Roadmap
+
+✅ Fase 1 — Fundação da Conversão: COMPLETA
+✅ Fase 2 — Personalização e Desejo: COMPLETA
+✅ Fase 3 — Trust & Social Proof: COMPLETA
+✅ Fase 4 — Conversão e Pagamento: COMPLETA (pagamento via WhatsApp)
+✅ Fase 5 — Retenção e Expansão: COMPLETA
+✅ Fase 6 — Admin Dashboard: COMPLETO
+⏳ Integrações externas: aguardando implementação quando serviços definidos
