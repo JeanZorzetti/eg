@@ -7,10 +7,59 @@ export const metadata: Metadata = {
 }
 
 const planos = [
-  { nome: 'Individual', cobertura: '1 vida · acesso completo', preco: 'R$ 37,00/mês' },
-  { nome: 'Familiar (4v)', cobertura: 'Até 4 vidas', preco: 'R$ 127,00/mês' },
-  { nome: 'Familiar+ (6v)', cobertura: 'Até 6 vidas · Premium', preco: 'R$ 247,00/mês' },
-  { nome: 'Empresarial', cobertura: 'Por colaborador/mês', preco: 'A partir de R$ 26,70/vida' },
+  {
+    nome: 'Plano Individual',
+    cobertura: '1 vida',
+    preco: 'R$ 44,00',
+    periodo: '/mês',
+    features: [
+      'Consultas com clínico geral',
+      'Consultas com especialistas (+30 especialidades)',
+      'Receitas e atestados digitais',
+      'Atendimento rápido',
+    ],
+    nota: 'Perfeito para uso pessoal com previsibilidade de custo.',
+  },
+  {
+    nome: 'Plano Familiar',
+    cobertura: 'Até 4 membros',
+    preco: 'R$ 162,00',
+    periodo: '/mês',
+    features: [
+      'Todos os benefícios do individual',
+      'Até 4 membros',
+      'Economia vs consultas particulares',
+      'Adultos e crianças',
+    ],
+    nota: 'Ideal para famílias que querem segurança médica mensal.',
+  },
+  {
+    nome: 'Plano Familiar Pro',
+    cobertura: 'Até 6 membros',
+    preco: 'R$ 228,00',
+    periodo: '/mês',
+    destaque: true,
+    badge: 'Mais popular',
+    features: [
+      'Todos os benefícios do familiar',
+      'Até 6 membros',
+      'Melhor custo por pessoa',
+      'Suporte sempre disponível',
+    ],
+    nota: 'A melhor opção para famílias maiores.',
+  },
+  {
+    nome: 'Plano Empresarial',
+    cobertura: 'Equipes e empresas',
+    preco: 'Sob consulta',
+    features: [
+      'Reduzir absenteísmo',
+      'Aumentar produtividade',
+      'Benefício de alto valor',
+      'Atendimento sem deslocamentos',
+    ],
+    nota: 'Planos personalizados conforme o tamanho da equipe.',
+  },
 ]
 
 const sla = [
@@ -178,17 +227,42 @@ export default function Page() {
 
       {/* Planos */}
       <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-[#26215C] mb-8 text-center">Planos e Preços</h2>
-          <div className="grid sm:grid-cols-2 gap-6">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-[#26215C] mb-3 text-center">Planos e Preços</h2>
+          <p className="text-gray-500 text-center mb-10">Sem carência, sem burocracia. Atendimento de onde você estiver.</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {planos.map((p) => (
-              <div key={p.nome} className="rounded-2xl border border-[#CECBF6] p-8 text-center hover:-translate-y-1 hover:shadow-lg transition-all duration-200">
-                <h3 className="text-xl font-bold text-[#26215C] mb-2">{p.nome}</h3>
-                <p className="text-sm text-gray-500 mb-4">{p.cobertura}</p>
-                <p className="text-2xl font-extrabold text-[#7F77DD] mb-6">{p.preco}</p>
-                <Link href="/planos" className="inline-block bg-[#7F77DD] hover:bg-[#26215C] text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 text-sm">
-                  Contratar
-                </Link>
+              <div key={p.nome} className={`relative flex flex-col rounded-2xl border p-6 transition-all duration-200 hover:shadow-lg ${p.destaque ? 'border-[#7F77DD] ring-2 ring-[#7F77DD]/30 shadow-md' : 'border-gray-200'}`}>
+                {p.badge && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <span className="bg-[#7F77DD] text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">{p.badge}</span>
+                  </div>
+                )}
+                <h3 className="text-base font-bold text-[#26215C] mb-1">{p.nome}</h3>
+                <p className="text-xs text-gray-400 mb-3">{p.cobertura}</p>
+                <div className="flex items-baseline gap-1 mb-4">
+                  <span className={`font-extrabold ${p.periodo ? 'text-2xl text-[#7F77DD]' : 'text-base text-gray-500'}`}>{p.preco}</span>
+                  {p.periodo && <span className="text-gray-400 text-xs">{p.periodo}</span>}
+                </div>
+                <ul className="space-y-1.5 mb-4 flex-1">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-xs text-gray-600">
+                      <svg className="w-3.5 h-3.5 text-[#7F77DD] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-xs text-gray-400 italic mb-4 border-t border-gray-100 pt-3">{p.nota}</p>
+                <a
+                  href="https://wa.me/5547991583876"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`block text-center text-sm font-semibold py-2.5 rounded-xl transition-all duration-200 ${p.destaque ? 'bg-[#7F77DD] text-white hover:bg-[#26215C]' : 'border-2 border-[#7F77DD] text-[#7F77DD] hover:bg-[#EEEDFE]'}`}
+                >
+                  Contratar agora
+                </a>
               </div>
             ))}
           </div>
