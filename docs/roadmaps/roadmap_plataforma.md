@@ -124,12 +124,12 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
 - [x] Botão "Agendar" abre modal de conversão (sem plano) ou agenda real (com plano)
 
 ### 2.3 Insights de Saúde (Blurred Premium)
-- [ ] Seção no dashboard: "Seus Insights de Saúde"
-- [ ] Baseado no questionário, gerar 2-3 cards com recomendações:
+- [x] Seção no dashboard: "Seus Insights de Saúde"
+- [x] Baseado no questionário, gerar 2-3 cards com recomendações:
   - Card 1 (visível): "Baseado no seu perfil, recomendamos check-up preventivo anual"
   - Card 2 (blurred + 🔒): "2 fatores de risco identificados no seu perfil"
   - Card 3 (blurred + 🔒): "Recomendação personalizada de Dr. Marcos"
-- [ ] Texto abaixo: "Desbloqueie todos os insights com seu plano"
+- [x] Texto abaixo: "Desbloqueie todos os insights com seu plano"
 
 ---
 
@@ -138,22 +138,22 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
 **Objetivo**: Construir confiança institucional e social dentro da plataforma.
 
 ### 3.1 Trust Signals na Plataforma
-- [ ] Footer da plataforma com badges:
+- [x] Footer da plataforma com badges:
   ```
   [🏛 CFM] Conformidade com Resolução 2.314/2022
   [🔒 LGPD] Dados protegidos
   [🛡 CRM] Profissionais com registro ativo
   ```
-- [ ] Selo de segurança no topo do agendamento
+- [x] Selo de segurança no topo do agendamento (TrustBar acima do main content)
 - [ ] Criptografia explícita na tela de videochamada (futuro)
 
 ### 3.2 Cards de Médicos com Credenciais
-- [ ] Criar model `Doctor` no DB:
+- [x] Criar model `Doctor` no DB:
   ```
   Doctor { id, name, specialty, crm, state, bio, photoUrl?,
     rating, reviewCount, available, createdAt }
   ```
-- [ ] Página `/plataforma/medicos` — grid de médicos com:
+- [x] Página `/plataforma/medicos` — grid de médicos com:
   - Foto ou iniciais (avatar purple gradient)
   - Nome, especialidade, CRM/estado
   - Rating (★ X.X) + número de avaliações
@@ -161,18 +161,18 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
   - Botão "Ver disponibilidade" (abre agenda ou modal de conversão)
 
 ### 3.3 Social Proof em Tempo Real
-- [ ] Contador no dashboard: "🟢 X consultas realizadas hoje"
-  - Pode ser estático inicialmente, atualizado manualmente
-- [ ] Stats na plataforma: "+45.000 pacientes atendidos | 4.8★ avaliação média"
+- [x] Contador no dashboard: "🟢 Atendimento ativo agora"
+  - Stats proeminentes com barra destacada
+- [x] Stats na plataforma: "+45.000 pacientes atendidos | 4.8★ avaliação média | Regulamentado pelo CFM"
 - [ ] Seção de depoimentos dentro da plataforma (3 cards rotativos)
 
 ### 3.4 Avaliações Pós-Consulta
-- [ ] Após status `COMPLETED`, exibir modal de avaliação:
-  - Rating 1-5 estrelas
+- [x] Após status `COMPLETED`, exibir modal de avaliação:
+  - Rating 1-5 estrelas interativas
   - Comentário opcional
-  - "Agendar retorno com Dr. X"
-- [ ] Salvar no DB (model `Review`)
-- [ ] Exibir nos cards dos médicos
+  - Feedback visual de sucesso
+- [x] Salvar no DB (model `Review`)
+- [ ] Exibir nos cards dos médicos (integração futura)
 
 ---
 

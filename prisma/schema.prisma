@@ -22,6 +22,7 @@ model User {
 
   appointments Appointment[]
   subscription Subscription?
+  reviews      Review[]
 
   @@map("users")
 }
@@ -79,6 +80,37 @@ model Appointment {
   createdAt  DateTime          @default(now())
   updatedAt  DateTime          @updatedAt
 
+  review Review?
+
   @@index([userId])
   @@map("appointments")
+}
+
+model Doctor {
+  id          String   @id @default(cuid())
+  name        String
+  specialty   String
+  crm         String   @unique
+  state       String
+  bio         String?
+  rating      Float    @default(5.0)
+  reviewCount Int      @default(0)
+  available   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("doctors")
+}
+
+model Review {
+  id            String      @id @default(cuid())
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  appointmentId String      @unique
+  appointment   Appointment @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+  rating        Int
+  comment       String?
+  createdAt     DateTime    @default(now())
+
+  @@map("reviews")
 }
