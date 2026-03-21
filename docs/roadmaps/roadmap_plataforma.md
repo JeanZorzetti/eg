@@ -234,16 +234,15 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
 **Objetivo**: Manter o paciente ativo e expandir receita.
 
 ### 5.1 Lembretes e Nudges
-- [ ] Email/WhatsApp 24h antes: "Sua consulta é amanhã às 10h com Dr. X"
-- [ ] Email/WhatsApp 1h antes: "Sua consulta começa em 1 hora. [Entrar na sala]"
-- [ ] Se não agendou em 7 dias após ativar plano:
+- [x] Email/WhatsApp 24h antes: "Sua consulta é amanhã às 10h com Dr. X"
+- [x] Email/WhatsApp 1h antes: "Sua consulta começa em 1 hora. [Entrar na sala]"
+- [x] Se não agendou em 7 dias após ativar plano:
   - "Dr. Marcos tem horário disponível amanhã. Deseja reservar?"
-- [ ] Se não usou em 30 dias:
+- [x] Se não usou em 30 dias:
   - "Você tem consultas disponíveis no seu plano. Cuide da sua saúde!"
 
 ### 5.2 Gamificação do Cuidado
-- [ ] Selo "Paciente Ativo" para quem consulta regularmente
-- [ ] Checklist de saúde anual:
+- [x] Checklist de saúde anual (`/plataforma/checklist`):
   ```
   Seu check-up anual:  ████████░░░░ 40%
   ✅ Clínico geral (jan/2026)
@@ -252,19 +251,28 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
   ○  Cardiologista
   ○  Dermatologista
   ```
-- [ ] "Complete seu check-up e ganhe 1 mês grátis"
+- [x] Progresso salvo em localStorage por ano (`eg_checklist_YYYY`)
+- [x] Marcar especialidade como realizada manualmente
+- [x] Banner motivacional ao completar 100%
+- [x] Link "Check-up Anual" adicionado na Sidebar
 
 ### 5.3 Programa de Indicação
-- [ ] "Convide alguém que você ama para cuidar da saúde junto"
-- [ ] Indicador ganha 30 dias grátis, indicado ganha 7 dias grátis
-- [ ] Link de indicação único por paciente
-- [ ] Dashboard de indicações: "Você indicou 3 pessoas. 2 se cadastraram."
+- [x] Modelo `Referral` adicionado ao Prisma schema
+- [x] API GET `/api/plataforma/referral` — retorna código, link, stats
+- [x] Página `/plataforma/indicar` com link único, botão copiar e compartilhar WhatsApp
+- [x] Link "Indicar Amigos" adicionado na Sidebar
 
 ### 5.4 Clube de Benefícios (aguardando definição com Camila)
-- [ ] Seção no dashboard: "Clube de Benefícios EG"
-- [ ] Descontos em farmácias, laboratórios, academias
-- [ ] Cards com logos de parceiros
-- [ ] "Exclusivo para assinantes ativos"
+- [x] Página `/plataforma/beneficios` — coming soon com design profissional
+- [x] Cards greyed-out (farmácias, laboratórios, academias, odontologia)
+- [x] Captura de email para notificação (localStorage)
+- [x] Link "Benefícios" com badge "Em breve" na Sidebar
+
+### 5.5 Dashboard Nudges (Nudge System)
+- [x] Nudge para assinantes sem nenhuma consulta: "Agendar agora"
+- [x] Nudge para assinantes inativos há 30+ dias: "Faz tempo que você não consulta"
+- [x] Nudge para consultas concluídas sem avaliação: "Avalie sua consulta"
+- [x] Todos dismissíveis (estado salvo em localStorage)
 
 ### 5.5 Histórico Médico Completo
 - [ ] Timeline visual de consultas

@@ -6,6 +6,7 @@ import Link from 'next/link'
 import StatusBadge from '@/components/plataforma/StatusBadge'
 import OnboardingProgress from '@/components/plataforma/OnboardingProgress'
 import { SpecialistPreviewCard } from '@/components/plataforma/ConversionModal'
+import DashboardNudges from '@/components/plataforma/DashboardNudges'
 
 // ---------------------------------------------------------------------------
 // Preview dashboard for users without an active subscription
@@ -212,7 +213,7 @@ export default async function DashboardPage() {
   // --- Active subscriber: real dashboard ---
   const now = new Date()
 
-  const [upcoming, totalCount, completedCount] = await Promise.all([
+  const [upcoming, totalCount, completedCount, lastCompleted, unreviewedCompleted] = await Promise.all([
     prisma.appointment.findMany({
       where: {
         userId: session.id,
@@ -224,6 +225,17 @@ export default async function DashboardPage() {
     }),
     prisma.appointment.count({ where: { userId: session.id } }),
     prisma.appointment.count({ where: { userId: session.id, status: 'COMPLETED' } }),
+    // Last appointment (any status) to check inactivity
+    prisma.appointment.findFirst({
+      where: { userId: session.id },
+      orderBy: { dateTime: 'desc' },
+      select: { dateTime: true },
+    }),
+    // Completed appointments without a review
+    prisma.appointment.findFirst({
+      where: { userId: session.id, status: 'COMPLETED', review: null },
+      select: { id: true },
+    }),
   ])
 
   const nextAppt = upcoming[0]
@@ -233,12 +245,22 @@ export default async function DashboardPage() {
   const fmtTime = (d: Date) =>
     d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
 
+  const lastAppointmentDate = lastCompleted?.dateTime?.toISOString() ?? null
+  const hasUnreviewedCompleted = !!unreviewedCompleted
+
   return (
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold text-[#26215C]">Olá, {firstName}!</h1>
         <p className="text-gray-500 text-sm mt-1">Bem-vindo à sua plataforma de saúde</p>
       </div>
+
+      {/* Contextual nudges for subscribers */}
+      <DashboardNudges
+        totalCount={totalCount}
+        lastAppointmentDate={lastAppointmentDate}
+        hasUnreviewedCompleted={hasUnreviewedCompleted}
+      />
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
