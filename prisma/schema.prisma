@@ -21,8 +21,37 @@ model User {
   updatedAt    DateTime  @updatedAt
 
   appointments Appointment[]
+  subscription Subscription?
 
   @@map("users")
+}
+
+enum SubscriptionPlan {
+  INDIVIDUAL
+  FAMILIAR
+  FAMILIAR_PRO
+  EMPRESARIAL
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELLED
+  EXPIRED
+  TRIAL
+}
+
+model Subscription {
+  id        String             @id @default(cuid())
+  userId    String             @unique
+  user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan      SubscriptionPlan
+  status    SubscriptionStatus @default(ACTIVE)
+  startDate DateTime           @default(now())
+  endDate   DateTime?
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  @@map("subscriptions")
 }
 
 enum Role {

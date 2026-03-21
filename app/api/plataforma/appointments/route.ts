@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPatientSession } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
+import { hasActiveSubscription } from '@/lib/subscription'
 
 export async function GET(request: NextRequest) {
   const session = await getPatientSession()
@@ -22,6 +23,14 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   const session = await getPatientSession()
   if (!session) return NextResponse.json({ error: 'Não autorizado' }, { status: 401 })
+
+  const active = await hasActiveSubscription(session.id)
+  if (!active) {
+    return NextResponse.json(
+      { error: 'Plano necessário', code: 'NO_SUBSCRIPTION' },
+      { status: 403 }
+    )
+  }
 
   const { specialty, dateTime, notes } = await request.json()
 

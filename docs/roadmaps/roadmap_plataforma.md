@@ -47,17 +47,17 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
 **Objetivo**: Separar "cadastrado" de "assinante" e criar o gatilho de desejo.
 
 ### 1.1 Modelo de Assinatura no DB
-- [ ] Criar model `Subscription` no Prisma:
+- [x] Criar model `Subscription` no Prisma:
   ```
   Subscription { id, userId, plan (INDIVIDUAL|FAMILIAR|FAMILIAR_PRO|EMPRESARIAL),
     status (ACTIVE|CANCELLED|EXPIRED|TRIAL), startDate, endDate, createdAt }
   ```
-- [ ] Campo `subscriptionId?` no User para relação
-- [ ] Helper `hasActiveSubscription(userId)` em `lib/subscription.ts`
-- [ ] Middleware: bloquear `POST /api/plataforma/appointments` se não tiver assinatura ativa
+- [x] Campo `subscriptionId?` no User para relação
+- [x] Helper `hasActiveSubscription(userId)` em `lib/subscription.ts`
+- [x] Middleware: bloquear `POST /api/plataforma/appointments` se não tiver assinatura ativa
 
 ### 1.2 Dashboard com Empty State de Conversão
-- [ ] Quando sem assinatura, exibir dashboard "preview":
+- [x] Quando sem assinatura, exibir dashboard "preview":
   - Cards de stats com dados mock/blur (blur no valor, lock icon)
   - Seção "Seus especialistas recomendados" com 3 cards de médicos (preview)
   - Barra de progresso do onboarding (20% pré-preenchida):
@@ -69,10 +69,10 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
     ○  Agende sua primeira consulta
     ```
   - Banner: "Você está a 1 passo de consultar com +30 especialistas"
-- [ ] Quando COM assinatura: dashboard normal com dados reais
+- [x] Quando COM assinatura: dashboard normal com dados reais
 
 ### 1.3 Trava no Agendamento
-- [ ] Ao clicar "Agendar Consulta" sem plano → mostrar modal de conversão:
+- [x] Ao clicar "Agendar Consulta" sem plano → mostrar modal de conversão:
   ```
   "Para agendar, você precisa de um plano ativo."
 
@@ -82,11 +82,11 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
 
   [Conhecer planos →]  [Falar no WhatsApp →]
   ```
-- [ ] Mesmo modal ao tentar qualquer ação de "assinante" (cancelar, ver detalhes)
+- [x] Mesmo modal ao tentar qualquer ação de "assinante" (cancelar, ver detalhes)
 
 ### 1.4 Fix: Register API
-- [ ] Debugar e corrigir o 500 em produção (Prisma connection na Vercel)
-- [ ] Testar fluxo completo: cadastro → login → plataforma
+- [x] Debugar e corrigir o 500 em produção (Prisma connection na Vercel)
+- [x] Testar fluxo completo: cadastro → login → plataforma
 
 ---
 

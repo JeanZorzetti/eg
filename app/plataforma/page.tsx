@@ -1,9 +1,197 @@
 import { getPatientSession } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
+import { hasActiveSubscription } from '@/lib/subscription'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import StatusBadge from '@/components/plataforma/StatusBadge'
 
+// ---------------------------------------------------------------------------
+// Preview dashboard for users without an active subscription
+// ---------------------------------------------------------------------------
+function PreviewDashboard({ firstName }: { firstName: string }) {
+  const steps = [
+    { label: 'Conta criada', done: true },
+    { label: 'Complete seu perfil', done: false },
+    { label: 'Conheça os planos', done: false },
+    { label: 'Contrate seu plano', done: false },
+    { label: 'Agende sua primeira consulta', done: false },
+  ]
+  const totalSteps = steps.length
+  const doneSteps = steps.filter((s) => s.done).length
+  // Endowed Progress Effect: start at 20% (1 out of 5 done)
+  const progressPct = Math.round((doneSteps / totalSteps) * 100)
+
+  const specialists = [
+    {
+      name: 'Dra. Ana Paula Ferreira',
+      specialty: 'Cardiologia',
+      crm: 'CRM/SC 12.847',
+      rating: '4.9',
+    },
+    {
+      name: 'Dr. Rafael Costa',
+      specialty: 'Psicologia',
+      crm: 'CRM/SC 8.432',
+      rating: '4.8',
+    },
+    {
+      name: 'Dra. Mariana Lima',
+      specialty: 'Clínica Geral',
+      crm: 'CRM/SC 15.219',
+      rating: '5.0',
+    },
+  ]
+
+  return (
+    <div className="space-y-8">
+      {/* Header */}
+      <div>
+        <h1 className="text-2xl font-bold text-[#26215C]">
+          Olá, {firstName}! Bem-vindo à sua plataforma de saúde
+        </h1>
+        <p className="text-gray-500 text-sm mt-1">
+          Explore o que te espera com um plano ativo
+        </p>
+      </div>
+
+      {/* Onboarding progress bar */}
+      <div className="bg-white rounded-2xl border border-gray-200 p-6">
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm font-semibold text-[#26215C]">
+            Seu progresso de ativação
+          </h2>
+          <span className="text-sm font-bold text-[#7F77DD]">{progressPct}%</span>
+        </div>
+        <div className="w-full bg-[#EEEDFE] rounded-full h-2.5 mb-5">
+          <div
+            className="bg-[#7F77DD] h-2.5 rounded-full transition-all"
+            style={{ width: `${progressPct}%` }}
+          />
+        </div>
+        <ol className="space-y-2.5">
+          {steps.map((step, i) => (
+            <li key={i} className="flex items-center gap-3 text-sm">
+              {step.done ? (
+                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center">
+                  <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+              ) : (
+                <span className="flex-shrink-0 w-5 h-5 rounded-full border-2 border-gray-300" />
+              )}
+              <span className={step.done ? 'text-gray-700 font-medium' : 'text-gray-400'}>
+                {step.label}
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      {/* Stats blurred/locked */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {[
+          { label: 'Próxima consulta', value: '—' },
+          { label: 'Total de consultas', value: '0' },
+          { label: 'Concluídas', value: '0' },
+        ].map((stat) => (
+          <div
+            key={stat.label}
+            className="relative bg-white rounded-2xl border border-gray-200 p-5 overflow-hidden"
+          >
+            <p className="text-xs text-gray-400 uppercase tracking-wide font-medium">
+              {stat.label}
+            </p>
+            <p className="text-3xl font-bold text-[#26215C] mt-2 blur-sm select-none">
+              {stat.value}
+            </p>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Big CTA banner */}
+      <div className="rounded-2xl bg-gradient-to-r from-[#26215C] to-[#7F77DD] p-6 text-white">
+        <p className="text-lg font-bold mb-1">
+          Você está a 1 passo de consultar com +30 especialistas
+        </p>
+        <p className="text-sm text-white/80 mb-4">
+          Ative seu plano e agende sua primeira consulta hoje mesmo — sem carência.
+        </p>
+        <Link
+          href="/planos"
+          className="inline-flex items-center gap-2 rounded-xl bg-white text-[#26215C] px-5 py-2.5 text-sm font-semibold hover:bg-[#EEEDFE] transition-colors"
+        >
+          Conhecer planos →
+        </Link>
+      </div>
+
+      {/* Social proof */}
+      <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+        <span className="flex items-center gap-1.5">
+          <span className="text-green-500 font-bold">✓</span>
+          +45.000 pacientes atendidos
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="text-yellow-500">★</span>
+          4.8 avaliação média
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-green-500 inline-block" />
+          Sem carência
+        </span>
+      </div>
+
+      {/* Specialist preview cards */}
+      <div>
+        <h2 className="text-lg font-semibold text-[#26215C] mb-3">
+          Especialistas disponíveis para você
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {specialists.map((doc) => (
+            <div
+              key={doc.name}
+              className="bg-white rounded-2xl border border-gray-200 p-5 flex flex-col gap-3"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#7F77DD] to-[#26215C] flex items-center justify-center text-white font-bold text-sm shrink-0">
+                  {doc.name.charAt(0)}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-[#26215C] truncate">{doc.name}</p>
+                  <p className="text-xs text-gray-500">{doc.specialty}</p>
+                </div>
+              </div>
+              <div className="flex items-center justify-between text-xs text-gray-500">
+                <span>{doc.crm}</span>
+                <span className="flex items-center gap-0.5 text-yellow-500 font-medium">
+                  ★ {doc.rating}
+                </span>
+              </div>
+              <Link
+                href="/planos"
+                className="flex items-center justify-center gap-2 rounded-xl border border-[#7F77DD] px-4 py-2 text-sm font-medium text-[#7F77DD] hover:bg-[#EEEDFE] transition-colors"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                Agendar consulta
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Full dashboard for active subscribers
+// ---------------------------------------------------------------------------
 export default async function DashboardPage() {
   const session = await getPatientSession()
   if (!session) redirect('/login')
@@ -13,11 +201,23 @@ export default async function DashboardPage() {
     select: { name: true },
   })
 
+  const firstName = user?.name?.split(' ')[0] ?? 'Paciente'
+  const isSubscriber = await hasActiveSubscription(session.id)
+
+  if (!isSubscriber) {
+    return <PreviewDashboard firstName={firstName} />
+  }
+
+  // --- Active subscriber: real dashboard ---
   const now = new Date()
 
   const [upcoming, totalCount, completedCount] = await Promise.all([
     prisma.appointment.findMany({
-      where: { userId: session.id, dateTime: { gte: now }, status: { in: ['SCHEDULED', 'CONFIRMED'] } },
+      where: {
+        userId: session.id,
+        dateTime: { gte: now },
+        status: { in: ['SCHEDULED', 'CONFIRMED'] },
+      },
       orderBy: { dateTime: 'asc' },
       take: 3,
     }),
@@ -35,7 +235,7 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-[#26215C]">Olá, {user?.name?.split(' ')[0]}!</h1>
+        <h1 className="text-2xl font-bold text-[#26215C]">Olá, {firstName}!</h1>
         <p className="text-gray-500 text-sm mt-1">Bem-vindo à sua plataforma de saúde</p>
       </div>
 
@@ -81,13 +281,16 @@ export default async function DashboardPage() {
         </Link>
       </div>
 
-      {/* Upcoming */}
+      {/* Upcoming appointments */}
       {upcoming.length > 0 && (
         <div>
           <h2 className="text-lg font-semibold text-[#26215C] mb-3">Próximas consultas</h2>
           <div className="space-y-3">
             {upcoming.map((appt) => (
-              <div key={appt.id} className="bg-white rounded-xl border border-gray-200 p-4 flex items-center justify-between gap-4">
+              <div
+                key={appt.id}
+                className="bg-white rounded-xl border border-gray-200 p-4 flex items-center justify-between gap-4"
+              >
                 <div className="flex items-center gap-4 min-w-0">
                   <div className="w-10 h-10 rounded-full bg-[#EEEDFE] flex items-center justify-center shrink-0">
                     <svg className="w-5 h-5 text-[#7F77DD]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,7 +299,9 @@ export default async function DashboardPage() {
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-gray-900 truncate">{appt.specialty}</p>
-                    <p className="text-xs text-gray-500">{fmtDate(appt.dateTime)} às {fmtTime(appt.dateTime)}</p>
+                    <p className="text-xs text-gray-500">
+                      {fmtDate(appt.dateTime)} às {fmtTime(appt.dateTime)}
+                    </p>
                   </div>
                 </div>
                 <StatusBadge status={appt.status} />
@@ -114,7 +319,9 @@ export default async function DashboardPage() {
             </svg>
           </div>
           <h3 className="text-base font-semibold text-[#26215C]">Nenhuma consulta ainda</h3>
-          <p className="text-sm text-gray-500 mt-1 mb-4">Agende sua primeira consulta e comece a cuidar da sua saúde</p>
+          <p className="text-sm text-gray-500 mt-1 mb-4">
+            Agende sua primeira consulta e comece a cuidar da sua saúde
+          </p>
           <Link
             href="/plataforma/agendar"
             className="inline-flex items-center gap-2 rounded-xl bg-[#7F77DD] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#26215C] transition-colors"

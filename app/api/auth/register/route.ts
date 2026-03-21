@@ -15,6 +15,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'A senha deve ter pelo menos 6 caracteres' }, { status: 400 })
     }
 
+    // Validate DATABASE_URL is present before DB operations
+    if (!process.env.DATABASE_URL) {
+      console.error('Register error: DATABASE_URL is not set')
+      return NextResponse.json(
+        { error: 'Erro de configuração do servidor. Contate o suporte.' },
+        { status: 500 }
+      )
+    }
+
     const existing = await prisma.user.findUnique({ where: { email } })
     if (existing) {
       return NextResponse.json({ error: 'Já existe uma conta com este e-mail' }, { status: 409 })
@@ -44,6 +53,18 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err)
     console.error('Register error:', message)
-    return NextResponse.json({ error: message }, { status: 500 })
+    // Return a safe but informative error message
+    const isDbError =
+      message.includes('connect') ||
+      message.includes('ECONNREFUSED') ||
+      message.includes('prisma')
+    return NextResponse.json(
+      {
+        error: isDbError
+          ? 'Erro de conexão com o banco de dados. Tente novamente em instantes.'
+          : message,
+      },
+      { status: 500 }
+    )
   }
 }
