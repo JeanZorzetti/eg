@@ -287,10 +287,10 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
 **Objetivo**: Automação, IA e dashboards administrativos.
 
 ### 6.1 Admin Dashboard Expandido
-- [ ] `/admin/pacientes` — lista de pacientes com filtros
-- [ ] `/admin/consultas` — todas as consultas (status, médico, paciente)
-- [ ] `/admin/financeiro` — assinaturas ativas, MRR, churn
-- [ ] `/admin/medicos` — gestão do corpo clínico
+- [x] `/admin/pacientes` — lista de pacientes com filtros
+- [x] `/admin/consultas` — todas as consultas (status, médico, paciente)
+- [x] `/admin/financeiro` — assinaturas ativas, MRR, churn
+- [x] `/admin/medicos` — gestão do corpo clínico
 
 ### 6.2 IA Assistente (Fase Futura)
 - [ ] Pré-triagem por chat antes da consulta
