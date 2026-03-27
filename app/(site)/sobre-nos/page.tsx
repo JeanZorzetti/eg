@@ -89,7 +89,7 @@ export default function SobreNosPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl font-bold text-[#26215C] mb-6">
-                Mais de uma década transformando vidas
+                Nascemos para transformar o acesso à saúde no Brasil
               </h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
