@@ -33,12 +33,12 @@ A plataforma (`/plataforma`) já possui o esqueleto funcional: cadastro, login, 
 - [x] API CRUD completa (appointments + profile)
 
 ### Problemas Críticos
-- [ ] Registro dá 500 em produção (Prisma/DB connection issue)
-- [ ] Qualquer paciente cadastrado pode agendar sem ter contratado um plano
-- [ ] Dashboard genérico — sem personalização ou storytelling
-- [ ] Zero trust signals (sem badges CFM, LGPD, CRM dos médicos)
-- [ ] Sem integração WhatsApp/PIX para conversão
-- [ ] Empty states sem direcionamento de conversão
+- [x] Registro dá 500 em produção — corrigido (split findUnique + try/catch com mensagem real)
+- [x] Qualquer paciente cadastrado pode agendar sem ter contratado um plano — corrigido (subscription gating via `hasActiveSubscription`)
+- [x] Dashboard genérico — corrigido (PreviewDashboard com blur/lock, insights, barra de progresso)
+- [x] Zero trust signals — corrigido (TrustBar com badges CFM, LGPD, CRM acima do main)
+- [ ] Sem integração PIX via gateway — WhatsApp como canal implementado; gateway de cartão/boleto pendente (veja Fase 4.2)
+- [x] Empty states sem direcionamento de conversão — corrigido (modal de conversão + CTAs em todas as páginas)
 
 ---
 
