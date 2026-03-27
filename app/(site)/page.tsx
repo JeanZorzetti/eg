@@ -132,7 +132,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
             {[
-              { value: '24/7', label: 'Sempre Disponível' },
+              { value: '100%', label: 'Digital e Seguro' },
               { value: '+30', label: 'Especialidades' },
               { value: '98%', label: 'Satisfação' },
               { value: '24/7', label: 'Disponibilidade' },
